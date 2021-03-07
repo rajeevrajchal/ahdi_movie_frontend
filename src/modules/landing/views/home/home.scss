@@ -1,23 +1,24 @@
 @import "src/assets/styles/theme";
 main.home {
-  box-sizing: border-box;
-  position: relative;
-  height: calc(110vh);
-  margin-top: -10vh;
-  .home-banner{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: url("../../../../assets/images/background.jpeg") no-repeat;
-    background-size: cover;
+  &::-webkit-scrollbar {
+    display: none;
   }
-  .home-content{
-    position: absolute;
-    padding: 20px 3vw;
-    z-index: 1;
-    width: 100%;
-
+  background: url("../../../../assets/images/background.jpeg") no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  .home-banner{
+    position: relative;
+    height: calc(90vh - 20px);
+    margin-top: -10vh;
+    box-sizing: border-box;
+    .image-area{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      //background: url("../../../../assets/images/background.jpeg") no-repeat;
+      background-size: cover;
+    }
   }
 }

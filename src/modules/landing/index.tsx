@@ -1,8 +1,8 @@
 import React from 'react';
 import './landing.scss';
 import Nav from './components/nav';
-import Home from './views/home';
 import Footer from './components/footer';
+import Home from './views/home';
 
 const Landing = () => {
   return (
