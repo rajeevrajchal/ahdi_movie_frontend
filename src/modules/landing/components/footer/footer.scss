@@ -1,0 +1,10 @@
+@import "src/assets/styles/theme";
+footer{
+  padding: 40px 5vw;
+  width: 100%;
+  height: 30vh;
+  background: #0c0404;
+  box-sizing: border-box;
+  position: absolute;
+  color: $light-color
+}

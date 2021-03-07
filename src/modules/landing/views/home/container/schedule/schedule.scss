@@ -1,0 +1,31 @@
+@import "src/assets/styles/theme";
+
+.schedule{
+  width: 100%;
+  padding: 5px 30px;
+  box-sizing: border-box;
+  .label{
+    color: $light-color;
+    text-transform: capitalize;
+  }
+  .schedule-slots{
+    width: 100%;
+    box-sizing: border-box;
+    .schedule-slot{
+      min-width: 15%;
+      max-width: 20%;
+      margin-right: 2%;
+      margin-bottom:2%;
+      text-transform: uppercase;
+      box-sizing: border-box;
+      &:nth-child(6n){
+        margin-right: 0;
+      }
+      span{
+        font-weight: bold;
+        font-size: 20px;
+        color: $light-color
+      }
+    }
+  }
+}

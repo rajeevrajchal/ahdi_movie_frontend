@@ -1,0 +1,23 @@
+@import "src/assets/styles/theme";
+main.home {
+  box-sizing: border-box;
+  position: relative;
+  height: calc(110vh);
+  margin-top: -10vh;
+  .home-banner{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url("../../../../assets/images/background.jpeg") no-repeat;
+    background-size: cover;
+  }
+  .home-content{
+    position: absolute;
+    padding: 20px 3vw;
+    z-index: 1;
+    width: 100%;
+
+  }
+}

@@ -1,0 +1,127 @@
+@import "src/assets/styles/theme";
+.movie {
+  box-sizing: border-box;
+  margin-top: 10vh;
+  .movie-thumbnail {
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+    box-sizing: border-box;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .movie-detail {
+    padding: 30px;
+    margin-left: 2vw;
+    flex: 1;
+    box-sizing: border-box;
+
+    .label {
+      width: 100%;
+      box-sizing: border-box;
+
+      h1 {
+        color: $light-color;
+        font-size: 40px;
+        letter-spacing: 1px;
+      }
+
+      .year {
+        box-sizing: border-box;
+        span {
+          color: $btn-hover;
+        }
+      }
+      .rating,.liked{
+        color: $btn-hover;
+        i{
+          color: $warning-color;
+        }
+      }
+      .liked{
+        i{
+          color: $secondary-color;
+        }
+      }
+    }
+    .extra-info-item{
+      text-transform: capitalize;
+      color: $btn-hover;
+    }
+    .movie-description{
+      width: 70%;
+      box-sizing: border-box;
+      p{
+        color: $light-color;
+        font-size: 20px;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        text-align: justify;
+        word-spacing: 2px;
+      }
+    }
+  }
+  .movie-genres{
+    width: 100%;
+    box-sizing: border-box;
+    .label{
+      h3{
+        color: $light-color;
+        font-size: 22px;
+      }
+    }
+    .movie-genres-list{
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      box-sizing: border-box;
+      .movie-genres-item{
+        border-radius: 10px;
+        padding: 10px 20px;
+        background: $btn-hover;
+        text-align: center;
+        margin-right: 10px;
+        box-sizing: border-box;
+        span{
+          text-transform: capitalize;
+          color: $light-color;
+          font-weight: bold;
+        }
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .movie-external{
+    width: 100%;
+    box-sizing: border-box;
+    .movie-external-item{
+      color: $btn-hover;
+      box-sizing: border-box;
+      .movie-external-logo,.movie-external-logo-tomato{
+        width: 100px;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .label{
+          color: $btn-hover;
+          h4{
+            color: $btn-hover;
+            font-size: 30px;
+          }
+        }
+      }
+      .movie-external-logo-tomato{
+        width: 50px;
+      }
+    }
+  }
+}

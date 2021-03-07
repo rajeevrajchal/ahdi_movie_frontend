@@ -1,13 +1,13 @@
 import React from 'react';
-import Layout from './hoc/layout';
-import BtnLoading from './components/shared/btnLoading';
+import Landing from './modules/landing';
+import Toaster from './components/shared/toaster';
 
 function App() {
   return (
-    <Layout description={'lorem'} keywords={'lorem'} title={'boiler'}>
-      <p>the boiler plate</p>
-      <BtnLoading />
-    </Layout>
+    <>
+      <Toaster />
+      <Landing />
+    </>
   );
 }
 

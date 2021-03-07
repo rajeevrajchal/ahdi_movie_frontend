@@ -1,0 +1,10 @@
+@import "src/assets/styles/theme";
+
+.landing {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  .content {
+    padding-top: 2vw;
+  }
+}
