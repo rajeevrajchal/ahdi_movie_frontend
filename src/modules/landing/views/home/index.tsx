@@ -1,9 +1,9 @@
 import React from 'react';
 import './home.scss';
 import Layout from '../../../../hoc/layout';
-import Movie from './container/movie';
 import Schedule from './container/schedule';
 import Ads from './container/ads';
+import Movie from './container/movie';
 
 const Home = () => {
   return (
@@ -13,11 +13,8 @@ const Home = () => {
       title={''}
     >
       <main className="home">
-        <div className="home-banner">
-          <Movie />
-          <div className="image-area"></div>
-        </div>
         <Ads />
+        <Movie />
         <Schedule />
       </main>
     </Layout>

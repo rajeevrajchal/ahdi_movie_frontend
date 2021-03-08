@@ -1,11 +1,7 @@
 @import "src/assets/styles/theme";
 .movie {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
   box-sizing: border-box;
-  padding: 20vh 3vw;
+  padding: 50px 3vw;
   width: 100%;
   .movie-thumbnail {
     width: 400px;

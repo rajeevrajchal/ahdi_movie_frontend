@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './nav.scss';
 import Logo from '../../../../components/shared/logo';
 
@@ -27,12 +28,15 @@ const Nav = () => {
     >
       <Logo />
       <div className="nav-menu flex align-center items-center">
-        <div className="nav-menu-item">
-          <span>Movie</span>
-        </div>
-        <div className="nav-menu-item">
+        <NavLink to={'/'} className="nav-menu-item">
+          <span>Home</span>
+        </NavLink>
+        <NavLink to={'/schedule'} className="nav-menu-item">
           <span>Schedule</span>
-        </div>
+        </NavLink>
+        <NavLink to={'/donate'} className="nav-menu-item">
+          <span>Donate</span>
+        </NavLink>
       </div>
     </div>
   );

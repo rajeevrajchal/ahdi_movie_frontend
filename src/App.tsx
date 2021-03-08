@@ -1,12 +1,13 @@
 import React from 'react';
-import Landing from './modules/landing';
 import Toaster from './components/shared/toaster';
+import Routes from './route';
+import module_route from './route/moduleRouting';
 
 function App() {
   return (
     <>
       <Toaster />
-      <Landing />
+      <Routes routeItems={module_route} />
     </>
   );
 }

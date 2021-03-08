@@ -130,7 +130,13 @@ a {
   &:hover {
     filter: brightness(0.8);
   }
-
+  &.disable-button{
+    background: $btn-hover;
+    color: $dark-color;
+    font-family: $title-font;
+    //pointer-events: none;
+    cursor: not-allowed! important;
+  }
   &.primary {
     background: $primary-color;
     color: $light-color;
@@ -145,7 +151,7 @@ a {
 
   &.light {
     background: $light-color;
-    color: $primary-color;
+    color: $dark-color;
   }
 
   &.success {

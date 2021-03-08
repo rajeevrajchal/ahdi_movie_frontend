@@ -1,8 +1,48 @@
 @import "src/assets/styles/theme";
-.ads-section{
-  margin: 10vh 3vw;
-  background: red;
-  height: 25vh;
-  text-align: center;
+
+.ads-section {
+  min-height: 20vh;
+  max-height: 20vh;
+  margin: 0 5.3vw;
+  padding: 20px 30px;
+  background: $linear-gradient-color;
   color: $light-color;
+  border-radius: $md;
+  box-sizing: border-box;
+
+  .ads {
+    box-sizing: border-box;
+
+    .ads-image {
+      width: 250px;
+      height: 120px;
+      border-radius: $md;
+
+      img {
+        border-radius: $md;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .ads-content {
+      h1 {
+        font-size: 20px;
+        width: 60%;
+      }
+
+      .btn {
+        a {
+          color: $light-color;
+
+          &:hover {
+            color: $light-color;
+          }
+        }
+      }
+
+      box-sizing: border-box;
+    }
+  }
 }
