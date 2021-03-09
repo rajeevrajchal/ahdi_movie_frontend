@@ -1,0 +1,10 @@
+@import "src/assets/styles/theme";
+
+main.schedule {
+  padding: 30px 5vw;
+  min-height: 63vh;
+  background: url("../../../../assets/images/background.jpeg");
+  background-size: contain;
+  box-sizing: border-box;
+  color: $text-color;
+}

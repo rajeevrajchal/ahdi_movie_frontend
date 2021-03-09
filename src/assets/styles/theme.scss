@@ -110,7 +110,7 @@ a {
   border-radius: $lg;
   background: rgba(0, 0, 0, 0.12);
   border: none;
-  color: $text-color;
+  color: #fff;
   min-width: 7vw;
   font-family: $title-font;
   font-size: $md;
@@ -139,13 +139,13 @@ a {
   }
   &.primary {
     background: $primary-color;
-    color: $light-color;
+    color: $text-color;
     font-family: $title-font;
   }
 
   &.secondary {
     background: $secondary-color;
-    color: $light-color;
+    color: $text-color;
     font-family: $title-font;
   }
 
@@ -268,7 +268,7 @@ a {
     justify-items: center;
     width: 100%;
     border-radius: $sm;
-    background: $input-box-color;
+    background: $light-color;
     box-sizing: border-box;
 
     i {

@@ -1,0 +1,18 @@
+@import "src/assets/styles/theme";
+main.play{
+  padding: 30px 5vw;
+  min-height: 70vh;
+  background: url("../../../../assets/images/background.jpeg");
+  background-size: contain;
+  box-sizing: border-box;
+  color: $text-color;
+  .video-player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    .player{
+      box-shadow: 1px 1px 10px $light-color;
+    }
+  }
+}

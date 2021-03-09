@@ -3,6 +3,8 @@ import { ContextDevTool } from 'react-context-devtool';
 
 import { $CHILDREN, $FIXME } from '../constants';
 import { toasterReducer } from '../components/shared/toaster/services/toasterReducer';
+import { modalReducer } from '../components/shared/modal/services/modalReducer';
+
 interface ContextProviderInterface {
   children: $CHILDREN;
 }
@@ -10,6 +12,10 @@ interface ContextProviderInterface {
 export const initialState = {
   isLoggedIn: false,
   user: {},
+  modal: {
+    show: false,
+    mode: '',
+  },
   toaster: {
     appear: false,
     title: '',
@@ -32,7 +38,7 @@ const combineReducers = (...reducers: $FIXME) => (
 
 export const Provider: React.FC<ContextProviderInterface> = ({ children }) => {
   const [state, dispatch] = useReducer(
-    combineReducers(toasterReducer),
+    combineReducers(toasterReducer, modalReducer),
     initialState
   );
   const value = { state, dispatch };

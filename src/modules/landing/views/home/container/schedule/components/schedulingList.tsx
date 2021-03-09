@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { Context } from '../../../../../../../context';
 import { setToasterState } from '../../../../../../../components/shared/toaster/services/toasterAction';
 import { ToasterStateInterface } from '../../../../../../../components/shared/toaster/services/toasterReducer';
+import { useHistory } from 'react-router-dom';
 
 const SchedulingList = () => {
   const { dispatch } = useContext(Context);
+  const history = useHistory();
   const handleClick = (disable: boolean) => {
     let title = '';
     let message = '';
@@ -15,6 +17,7 @@ const SchedulingList = () => {
       title = 'Success';
       message = 'Scheduling move successful.';
     }
+    history.push('/play/124907612345678');
     const toaster: ToasterStateInterface = {
       appear: true,
       message: message,
