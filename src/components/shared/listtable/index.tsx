@@ -20,7 +20,6 @@ interface ListTableInterface {
 
 const ListTable: FC<ListTableInterface> = (props) => {
   const { columns, rows, paginate } = props;
-  console.log(paginate);
 
   const [startingVal, setStartingVal] = useState(0);
   const [endingVal, setEndingVal] = useState(
@@ -30,7 +29,6 @@ const ListTable: FC<ListTableInterface> = (props) => {
   const [totalPages, setTotalPages] = useState(0);
 
   const paginateRows = (rows: $FIXME) => {
-    console.log(rows.slice(startingVal, endingVal));
     return rows.slice(startingVal, endingVal);
   };
 

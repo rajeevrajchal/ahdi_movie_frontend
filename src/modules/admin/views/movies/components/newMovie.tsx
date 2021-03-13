@@ -1,40 +1,52 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Modal from '../../../../../components/shared/modal';
 import BtnLoading from '../../../../../components/shared/btnLoading';
+import { storeMovie } from '../services/storeMovieApi';
+import { Context } from '../../../../../context';
+import { closeModal } from '../../../../../components/shared/modal/services/modalAction';
 
 const NewMovie = () => {
   const [loading, setLoading] = useState(false);
-
+  const { state, dispatch } = useContext(Context);
   const formik = useFormik({
     initialValues: {
       name: '',
-      thumb_nail: '',
-      imdb: '',
-      tomato_meter: '',
+      poster: '',
+      rating: '',
+      tomato_rating: '',
       language: '',
       year: '',
-      length: '',
+      duration: '',
       description: '',
+      genres: ['action', 'comedy'],
+      uploader: state.user,
+      uploaderUUID: state.user._id,
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Name is required'),
-      imdb: Yup.string()
+      rating: Yup.string()
         .required('IMDb Rating is required')
         .max(10, 'Max number exceed.'),
-      tomato_meter: Yup.string()
+      tomato_rating: Yup.string()
         .required('Tomato Meter is required')
         .max(10, 'Max number exceed.'),
       language: Yup.string().required('Language is required'),
       year: Yup.string().required('Year is required'),
-      length: Yup.string().required('Length is required'),
+      duration: Yup.string().required('Duration is required'),
       description: Yup.string().required('Description is required'),
     }),
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
-      console.log(values);
-      resetForm();
+      const res = await storeMovie(dispatch, values, state.token);
+      if (res === 'success') {
+        resetForm();
+        dispatch(closeModal());
+      } else {
+        setLoading(false);
+      }
+      setLoading(false);
     },
   });
   return (
@@ -57,49 +69,49 @@ const NewMovie = () => {
         <div className="input-group">
           <div className="input-box">
             <input
-              value={formik.values.thumb_nail}
+              value={formik.values.poster}
               onChange={formik.handleChange}
-              name="thumb_nail"
-              type="file"
+              name="poster"
+              type="text"
               placeholder="Movie Name"
             />
           </div>
-          {formik.errors.thumb_nail && formik.touched.thumb_nail && (
-            <div className="text-error mt-sm">{formik.errors.thumb_nail}</div>
+          {formik.errors.poster && formik.touched.poster && (
+            <div className="text-error mt-sm">{formik.errors.poster}</div>
           )}
         </div>
         <div className="flex justify-between">
           <div className="input-group flex-1">
             <div className="input-box">
               <input
-                value={formik.values.imdb}
+                value={formik.values.rating}
                 onChange={formik.handleChange}
-                name="imdb"
+                name="rating"
                 type="number"
                 min={0}
                 max={10}
                 placeholder="IMDb"
               />
             </div>
-            {formik.errors.imdb && formik.touched.imdb && (
-              <div className="text-error mt-sm">{formik.errors.imdb}</div>
+            {formik.errors.rating && formik.touched.rating && (
+              <div className="text-error mt-sm">{formik.errors.rating}</div>
             )}
           </div>
           <div className="input-group flex-1 ml-md">
             <div className="input-box">
               <input
-                value={formik.values.tomato_meter}
+                value={formik.values.tomato_rating}
                 onChange={formik.handleChange}
-                name="tomato_meter"
+                name="tomato_rating"
                 type="number"
                 min={0}
                 max={10}
                 placeholder="Tomatometer"
               />
             </div>
-            {formik.errors.tomato_meter && formik.touched.tomato_meter && (
+            {formik.errors.tomato_rating && formik.touched.tomato_rating && (
               <div className="text-error mt-sm">
-                {formik.errors.tomato_meter}
+                {formik.errors.tomato_rating}
               </div>
             )}
           </div>
@@ -108,16 +120,16 @@ const NewMovie = () => {
           <div className="input-group flex-1">
             <div className="input-box">
               <input
-                value={formik.values.length}
+                value={formik.values.duration}
                 onChange={formik.handleChange}
-                name="length"
+                name="duration"
                 type="number"
                 min={1}
-                placeholder="Length"
+                placeholder="Duration"
               />
             </div>
-            {formik.errors.length && formik.touched.length && (
-              <div className="text-error mt-sm">{formik.errors.length}</div>
+            {formik.errors.duration && formik.touched.duration && (
+              <div className="text-error mt-sm">{formik.errors.duration}</div>
             )}
           </div>
           <div className="input-group flex-1 ml-md">

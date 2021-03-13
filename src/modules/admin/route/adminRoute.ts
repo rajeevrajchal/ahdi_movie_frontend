@@ -7,16 +7,19 @@ const adminRoute: RouteInterface[] = [
   {
     path: '/admin/users',
     component: Users,
+    isAuth: true,
     exact: true,
   },
   {
     path: '/admin/movies',
     component: Movies,
+    isAuth: true,
     exact: true,
   },
   {
     path: '',
     component: Dashboard,
+    isAuth: true,
     exact: true,
   },
 ];

@@ -10,7 +10,7 @@ export interface ToasterStateInterface {
 }
 
 interface ActionType {
-  type?: string;
+  type: string;
   payload: ToasterStateInterface;
 }
 

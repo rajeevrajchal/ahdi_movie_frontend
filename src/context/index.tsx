@@ -4,6 +4,7 @@ import { ContextDevTool } from 'react-context-devtool';
 import { $CHILDREN, $FIXME } from '../constants';
 import { toasterReducer } from '../components/shared/toaster/services/toasterReducer';
 import { modalReducer } from '../components/shared/modal/services/modalReducer';
+import { loginReducer } from '../modules/auth/services/loginReducer';
 
 interface ContextProviderInterface {
   children: $CHILDREN;
@@ -11,7 +12,13 @@ interface ContextProviderInterface {
 
 export const initialState = {
   isLoggedIn: false,
-  user: {},
+  user: {
+    email: '',
+    _id: '',
+    name: '',
+    role: '',
+  },
+  token: '',
   modal: {
     show: false,
     mode: '',
@@ -38,7 +45,7 @@ const combineReducers = (...reducers: $FIXME) => (
 
 export const Provider: React.FC<ContextProviderInterface> = ({ children }) => {
   const [state, dispatch] = useReducer(
-    combineReducers(toasterReducer, modalReducer),
+    combineReducers(toasterReducer, modalReducer, loginReducer),
     initialState
   );
   const value = { state, dispatch };
