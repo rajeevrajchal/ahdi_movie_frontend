@@ -3,7 +3,7 @@
 .ads-section {
   min-height: 20vh;
   max-height: 20vh;
-  margin: 0 5.3vw;
+  width: 70%;
   padding: 20px 30px;
   background: $linear-gradient-color;
   color: $light-color;
@@ -29,7 +29,7 @@
     .ads-content {
       h1 {
         font-size: 20px;
-        width: 60%;
+        width: 100%;
       }
 
       .btn {

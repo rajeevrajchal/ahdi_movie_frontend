@@ -1,15 +1,17 @@
-import React from 'react';
-
-const TimeSlot = () => {
+import React, { FC } from 'react';
+import './timeslot.scss';
+import { $FIXME } from '../../../../../../../constants';
+interface TimeSlotInterface {
+  schedule: $FIXME;
+}
+const TimeSlot: FC<TimeSlotInterface> = ({ schedule }) => {
   const handleClick = () => {
     console.log('disabled');
   };
   return (
     <>
-      <div className="schedule-item flex align-center items-center disabled">
-        <div className="label text-center">
-          <h3>9:00PM</h3>
-        </div>
+      <div className="s-item flex justify-between align-center items-center">
+        <div className="label text-center">{schedule.slot}</div>
         <div className="actions">
           <i
             className="fa fa-times"

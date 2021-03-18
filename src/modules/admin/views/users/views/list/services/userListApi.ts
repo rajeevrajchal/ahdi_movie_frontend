@@ -16,7 +16,6 @@ const dispatchToaster = (dispatch: $FIXME) => {
 };
 
 export const fetchUserList = async (dispatch: $FIXME, token: string) => {
-  console.log('new data to fetch');
   try {
     const res = await axios.get(`${api_url}users`, {
       headers: {

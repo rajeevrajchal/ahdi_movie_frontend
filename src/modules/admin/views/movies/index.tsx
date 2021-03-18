@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import './movies.scss';
 import CurrentMovie from './views/currentMovie';
 import { Context } from '../../../../context';
-import NewMovie from './components/newMovie';
+import NewMovie from './components/movie/newMovie';
 import Schedule from './views/schedule';
 import MovieList from './views/movieList';
 import { MOVIESCREEN } from '../../../../enum/movieEnum';

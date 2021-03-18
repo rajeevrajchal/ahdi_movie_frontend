@@ -4,10 +4,9 @@ import ListTable, {
 } from '../../../../../components/shared/listtable';
 import Breadcrumb from '../components/breadcrumb';
 import { MOVIESCREEN } from '../../../../../enum/movieEnum';
-import { $FIXME } from '../../../../../constants';
-import { fetchMovieList } from '../services/listMovieApi';
 import { Context } from '../../../../../context';
 import DataLoader from '../../../../../components/shared/dataLoader';
+import { fetchMovieList } from '../components/movie/services/movieAction';
 
 interface MovieListInterface {
   setScreen: (screen: MOVIESCREEN) => void;
@@ -15,7 +14,6 @@ interface MovieListInterface {
 
 const MovieList: FC<MovieListInterface> = (props) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [movies, setMovies] = useState<$FIXME>([]);
   const { state, dispatch } = useContext(Context);
   const columns: ColumnType[] = [
     {
@@ -76,8 +74,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
 
   const getMovieList = async () => {
     setLoading(true);
-    const res = await fetchMovieList(dispatch, state.token);
-    setMovies(res);
+    await fetchMovieList(dispatch, state.token);
     setLoading(false);
   };
   useEffect(() => {
@@ -100,7 +97,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
           isBack={true}
           setScreen={props.setScreen}
         />
-        <ListTable columns={columns} rows={movies} paginate={5} />
+        <ListTable columns={columns} rows={state.movie} paginate={10} />
       </div>
     );
   }

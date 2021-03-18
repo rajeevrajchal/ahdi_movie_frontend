@@ -1,22 +1,34 @@
-import React, { useState } from 'react';
-import Modal from '../../../../../components/shared/modal';
-import BtnLoading from '../../../../../components/shared/btnLoading';
+import React, { useContext, useState } from 'react';
+import Modal from '../../../../../../components/shared/modal';
+import BtnLoading from '../../../../../../components/shared/btnLoading';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Context } from '../../../../../../context';
+import { storeSchedule } from './services/scheduleAction';
 
 const AddTimeSchedule = () => {
+  const { state, dispatch } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
       slot: '',
+      movieUUID: state.current_movie._id,
     },
     validationSchema: Yup.object({
       slot: Yup.string().required('Time slot is required'),
     }),
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
-      console.log(values);
-      resetForm();
+      const res = await storeSchedule(
+        dispatch,
+        state.token,
+        values,
+        state.current_movie._id
+      );
+      if (res === 'success') {
+        resetForm();
+      }
+      setLoading(false);
     },
   });
   return (

@@ -6,9 +6,9 @@ import MovieGenres from '../../../../landing/views/home/container/movie/componen
 import Breadcrumb from '../components/breadcrumb';
 import { MOVIESCREEN } from '../../../../../enum/movieEnum';
 import { Context } from '../../../../../context';
-import { getCurrentMovie } from '../services/currentMovieApi';
 import { $FIXME } from '../../../../../constants';
 import DataLoader from '../../../../../components/shared/dataLoader';
+import { getCurrentMovie } from '../../../../landing/views/home/services/current_movie/currentMovieAction';
 
 interface CurrentMovieInterface {
   setScreen: (screen: MOVIESCREEN) => void;

@@ -20,4 +20,14 @@ export const sidebarItems: sidebarItemsInterface[] = [
     link: '/admin/movies',
     icon: 'fa-play',
   },
+  {
+    label: 'Donation',
+    link: '/admin/donation',
+    icon: 'fa-money',
+  },
+  {
+    label: 'Suggestion',
+    link: '/admin/suggestion',
+    icon: 'fa-comment',
+  },
 ];

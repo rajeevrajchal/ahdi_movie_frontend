@@ -5,6 +5,10 @@ import { $CHILDREN, $FIXME } from '../constants';
 import { toasterReducer } from '../components/shared/toaster/services/toasterReducer';
 import { modalReducer } from '../components/shared/modal/services/modalReducer';
 import { loginReducer } from '../modules/auth/services/loginReducer';
+import { currentMovieReducer } from '../modules/landing/views/home/services/current_movie/currentMovieReducer';
+import { scheduleReducer } from '../modules/admin/views/movies/components/schedule/services/scheduleReducer';
+import { movieReducer } from '../modules/admin/views/movies/components/movie/services/movieReducer';
+import { suggestionReducer } from '../modules/admin/views/suggestions/services/SuggestionReducer';
 
 interface ContextProviderInterface {
   children: $CHILDREN;
@@ -23,6 +27,10 @@ export const initialState = {
     show: false,
     mode: '',
   },
+  current_movie: {},
+  movie: [],
+  schedule: [],
+  suggested_movie: [],
   toaster: {
     appear: false,
     title: '',
@@ -45,7 +53,15 @@ const combineReducers = (...reducers: $FIXME) => (
 
 export const Provider: React.FC<ContextProviderInterface> = ({ children }) => {
   const [state, dispatch] = useReducer(
-    combineReducers(toasterReducer, modalReducer, loginReducer),
+    combineReducers(
+      toasterReducer,
+      modalReducer,
+      loginReducer,
+      currentMovieReducer,
+      scheduleReducer,
+      movieReducer,
+      suggestionReducer
+    ),
     initialState
   );
   const value = { state, dispatch };

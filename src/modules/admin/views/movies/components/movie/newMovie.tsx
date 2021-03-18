@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Modal from '../../../../../components/shared/modal';
-import BtnLoading from '../../../../../components/shared/btnLoading';
-import { storeMovie } from '../services/storeMovieApi';
-import { Context } from '../../../../../context';
-import { closeModal } from '../../../../../components/shared/modal/services/modalAction';
+import Modal from '../../../../../../components/shared/modal';
+import BtnLoading from '../../../../../../components/shared/btnLoading';
+import { Context } from '../../../../../../context';
+import { closeModal } from '../../../../../../components/shared/modal/services/modalAction';
+import { storeMovie } from './services/movieAction';
 
 const NewMovie = () => {
   const [loading, setLoading] = useState(false);
