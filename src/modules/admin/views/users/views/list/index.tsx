@@ -5,16 +5,22 @@ import ListTable, {
 import { $FIXME } from '../../../../../../constants';
 import { Context } from '../../../../../../context';
 import DataLoader from '../../../../../../components/shared/dataLoader';
-import { fetchUserList } from './services/userListApi';
+import {
+  closeModal,
+  openModal,
+} from '../../../../../../components/shared/modal/services/modalAction';
+import Modal from '../../../../../../components/shared/modal';
+import Confirm from '../../../../../../components/shared/confirm';
+import { deleteUser, fetchUserList } from '../../services/userAction';
 
 const UserList = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [users, setUsers] = useState<$FIXME>([]);
+  const [selectedUser, setSelectedUser] = useState<$FIXME>({});
+
   const { state, dispatch } = useContext(Context);
   const getUserList = async () => {
     setLoading(true);
-    const res = await fetchUserList(dispatch, state.token);
-    setUsers(res);
+    await fetchUserList(dispatch, state.token);
     setLoading(false);
   };
   useEffect(() => {
@@ -52,10 +58,26 @@ const UserList = () => {
       status: false,
     },
   ];
-  const deleteAction = (obj: $FIXME) => {
-    console.log('delete action ');
-    console.log(obj);
+  const deleteAction = async (obj: $FIXME) => {
+    setSelectedUser(obj);
+    const modalData = {
+      show: true,
+      mode: 'delete_movie',
+    };
+    dispatch(openModal(modalData));
   };
+
+  const confirmDelete = async () => {
+    setLoading(true);
+    await dispatch(deleteUser(dispatch, state.token, selectedUser._id));
+    dispatch(closeModal());
+    setLoading(false);
+  };
+
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
+
   if (loading) {
     return (
       <div className="flex-centered">
@@ -70,9 +92,17 @@ const UserList = () => {
         <ListTable
           deleteAction={deleteAction}
           columns={columns}
-          rows={users}
+          rows={state.users}
           paginate={5}
         />
+        {state.modal.mode === 'delete_movie' && (
+          <Modal title={'Delete'}>
+            <Confirm
+              cancelAction={handleCloseModal}
+              confirmAction={confirmDelete}
+            />
+          </Modal>
+        )}
       </div>
     );
   }

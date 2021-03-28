@@ -10,6 +10,7 @@ import { currentMovieReducer } from '../modules/landing/views/home/services/curr
 import { scheduleReducer } from '../modules/admin/views/movies/components/schedule/services/scheduleReducer';
 import { movieReducer } from '../modules/admin/views/movies/components/movie/services/movieReducer';
 import { suggestionReducer } from '../modules/admin/views/suggestions/services/SuggestionReducer';
+import { userReducer } from '../modules/admin/views/users/services/userReducer';
 
 interface ContextProviderInterface {
   children: $CHILDREN;
@@ -30,6 +31,7 @@ export const initialState = {
   },
   current_movie: {},
   movie: [],
+  users: [],
   schedule: [],
   suggested_movie: [],
   toaster: {
@@ -58,6 +60,7 @@ export const Provider: React.FC<ContextProviderInterface> = ({ children }) => {
       toasterReducer,
       modalReducer,
       loginReducer,
+      userReducer,
       currentMovieReducer,
       scheduleReducer,
       movieReducer,
