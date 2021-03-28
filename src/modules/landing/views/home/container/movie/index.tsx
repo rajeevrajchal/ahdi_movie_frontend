@@ -14,12 +14,12 @@ interface MovieInterface {
 }
 const Movie: FC<MovieInterface> = ({ currentMovies }) => {
   return (
-    <div className="movie flex align-center items-center">
+    <div className="movie flex align-center items-center ">
       <MovieImage
         media_image={currentMovies.poster}
         alt_text={currentMovies.name}
       />
-      <div className="movie-detail">
+      <div className="movie-detail flex-1">
         <MovieLabel
           liked={currentMovies.like}
           rating={currentMovies.imdbRating}

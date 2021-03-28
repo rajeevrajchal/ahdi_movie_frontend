@@ -6,11 +6,11 @@ interface ConfirmInterface {
 }
 const Confirm: FC<ConfirmInterface> = ({ confirmAction, cancelAction }) => {
   return (
-    <div className="flex">
+    <div className="flex align-center items-center justify-center mt-lg">
       <div className="btn primary" onClick={() => cancelAction()}>
         Cancel
       </div>
-      <div className="btn secondary" onClick={() => confirmAction()}>
+      <div className="btn secondary ml-lg" onClick={() => confirmAction()}>
         Yes
       </div>
     </div>

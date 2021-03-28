@@ -27,8 +27,8 @@ const Auth = () => {
       if (res.status === 'success') {
         resetForm();
         history.push('/admin');
-        setLoading(false);
       }
+      setLoading(false);
     },
   });
   return (

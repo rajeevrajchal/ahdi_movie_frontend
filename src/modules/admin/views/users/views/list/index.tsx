@@ -29,6 +29,7 @@ const UserList = () => {
       label: 'User ID',
       align: 'left',
       sortable: false,
+      status: false,
     },
     {
       field: 'name',
@@ -38,6 +39,7 @@ const UserList = () => {
       label: 'User Name',
       align: 'left',
       sortable: false,
+      status: false,
     },
     {
       field: 'email',
@@ -47,6 +49,7 @@ const UserList = () => {
       label: 'User Email',
       align: 'left',
       sortable: false,
+      status: false,
     },
   ];
   const deleteAction = (obj: $FIXME) => {

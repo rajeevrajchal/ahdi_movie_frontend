@@ -1,5 +1,6 @@
 @import "src/assets/styles/theme";
 main.home {
+  min-height: 100vh;
   &::-webkit-scrollbar {
     display: none;
   }
