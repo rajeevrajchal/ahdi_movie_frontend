@@ -9,6 +9,7 @@ export type ColumnType = {
   field: string;
   flexVal: number;
   headerClasses: string;
+  status: boolean;
   sortable: boolean;
 };
 
@@ -91,7 +92,17 @@ const ListTable: FC<ListTableInterface> = (props) => {
                   className={`table-body-items ${columnHeader.headerClasses} flex-${columnHeader.flexVal} text-${columnHeader.align}`}
                   key={key}
                 >
-                  <h3>{rowData[columnHeader.field]}</h3>
+                  {columnHeader.status ? (
+                    <div
+                      className={`btn ${
+                        columnHeader.status ? 'primary' : 'secondary'
+                      }`}
+                    >
+                      {columnHeader.status ? 'Active' : 'Deactivate'}
+                    </div>
+                  ) : (
+                    <h3>{rowData[columnHeader.field]}</h3>
+                  )}
                 </div>
               ))}
               {hasActions() && (

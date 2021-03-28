@@ -58,57 +58,64 @@ const CurrentMovie: FC<CurrentMovieInterface> = (props) => {
           isBack={false}
           setScreen={props.setScreen}
         />
-        <div className="current-movie">
-          <div className="header flex align-center items-center justify-between">
-            <h3>Current Movie</h3>
-            <div className="button-area flex align-center items-center ">
-              <div
-                className="btn secondary flex align-center items-center"
-                onClick={() => setScreen(MOVIESCREEN.SCHEDULE)}
-              >
-                <h3> Schedule</h3>
+        {currentMovies ? (
+          <div className="current-movie">
+            <div className="header flex align-center items-center justify-between">
+              <h3>Current Movie</h3>
+              <div className="button-area flex align-center items-center ">
+                <div
+                  className="btn secondary flex align-center items-center"
+                  onClick={() => setScreen(MOVIESCREEN.SCHEDULE)}
+                >
+                  <h3> Schedule</h3>
+                </div>
+                <div className="btn primary flex align-center items-center ml-md">
+                  <h3 className="mr-md">
+                    <i className="fa fa-close" aria-hidden="true"></i>
+                  </h3>
+                  <h3>Close BroadCast</h3>
+                </div>
               </div>
-              <div className="btn primary flex align-center items-center ml-md">
-                <h3 className="mr-md">
-                  <i className="fa fa-close" aria-hidden="true"></i>
-                </h3>
-                <h3>Close BroadCast</h3>
+            </div>
+            <div className="movie-detail flex items-end">
+              <div className="image">
+                <img
+                  src={
+                    currentMovies
+                      ? currentMovies.poster
+                      : 'https://img.yts.mx/assets/images/movies/Almost_Married_2014/large-cover.jpg'
+                  }
+                  alt={currentMovies ? currentMovies.name : 'movie_name'}
+                />
+              </div>
+              <div className="movie-label">
+                <MovieLabel
+                  liked={currentMovies ? currentMovies.like : 400}
+                  rating={currentMovies ? currentMovies.rating : 4.0}
+                  year={currentMovies ? currentMovies.year : 2014}
+                  title={currentMovies ? currentMovies.name : 'Movie Name'}
+                />
+                <MovieExtra
+                  playback={currentMovies.duration ?? 97}
+                  lang={currentMovies.language ?? 'en'}
+                />
+                <MovieDesc
+                  desc={
+                    currentMovies.default ??
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                  }
+                />
+                <MovieGenres
+                  genres={currentMovies.genres ?? ['action', 'comedy']}
+                />
               </div>
             </div>
           </div>
-          <div className="movie-detail flex items-end">
-            <div className="image">
-              <img
-                src={
-                  currentMovies.poster ??
-                  'https://img.yts.mx/assets/images/movies/Almost_Married_2014/large-cover.jpg'
-                }
-                alt={currentMovies.name ?? 'movie_name'}
-              />
-            </div>
-            <div className="movie-label">
-              <MovieLabel
-                liked={currentMovies.like ?? 400}
-                rating={currentMovies.rating ?? 4.0}
-                year={currentMovies.year ?? 2014}
-                title={currentMovies.name ?? 'Movie Name'}
-              />
-              <MovieExtra
-                playback={currentMovies.duration ?? 97}
-                lang={currentMovies.language ?? 'en'}
-              />
-              <MovieDesc
-                desc={
-                  currentMovies.default ??
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                }
-              />
-              <MovieGenres
-                genres={currentMovies.genres ?? ['action', 'comedy']}
-              />
-            </div>
-          </div>
-        </div>
+        ) : (
+          <h3 style={{ textAlign: 'center' }} className="mt-xl">
+            No Current Movie
+          </h3>
+        )}
       </>
     );
   }

@@ -35,6 +35,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
       flexVal: 1,
       label: 'Movie Id',
       align: 'left',
+      status: false,
       sortable: false,
     },
     {
@@ -44,6 +45,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
       flexVal: 1,
       label: 'Movie Name',
       align: 'left',
+      status: false,
       sortable: false,
     },
     {
@@ -53,6 +55,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
       flexVal: 1,
       label: 'Duration',
       align: 'center',
+      status: false,
       sortable: false,
     },
     {
@@ -62,6 +65,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
       flexVal: 1,
       label: 'IMDb',
       align: 'center',
+      status: false,
       sortable: false,
     },
     {
@@ -71,6 +75,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
       flexVal: 1,
       label: 'Tomoto Meter',
       align: 'center',
+      status: false,
       sortable: false,
     },
     {
@@ -78,6 +83,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
       headerClasses: 'movie_status',
       name: 'movie_status',
       flexVal: 1,
+      status: true,
       label: 'Movie Status',
       align: 'center',
       sortable: false,
@@ -97,7 +103,7 @@ const MovieList: FC<MovieListInterface> = (props) => {
     setSelectedMovie(obj);
     const modalData = {
       show: true,
-      mode: 'delete',
+      mode: 'delete_movie',
     };
     dispatch(openModal(modalData));
   };
@@ -105,9 +111,13 @@ const MovieList: FC<MovieListInterface> = (props) => {
   const confirmDelete = async () => {
     setLoading(true);
     await dispatch(deleteMovie(dispatch, state.token, selectedMovie._id));
+    dispatch(closeModal());
     setLoading(false);
   };
 
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
   const editAction = (obj: $FIXME) => {
     setSelectedMovie(obj);
     const modalData = {
@@ -147,10 +157,10 @@ const MovieList: FC<MovieListInterface> = (props) => {
             <NewMovie editMovie={selectedMovie} isEditMode={true} />
           </Modal>
         )}
-        {state.modal.mode === 'delete' && (
+        {state.modal.mode === 'delete_movie' && (
           <Modal title={'Delete'}>
             <Confirm
-              cancelAction={dispatch(closeModal())}
+              cancelAction={handleCloseModal}
               confirmAction={confirmDelete}
             />
           </Modal>

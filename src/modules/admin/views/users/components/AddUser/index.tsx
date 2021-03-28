@@ -3,10 +3,8 @@ import { UserEnum } from '../../../../../../enum/userEnum';
 import BtnLoading from '../../../../../../components/shared/btnLoading';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { addUser } from './services/addUserApi';
 import { Context } from '../../../../../../context';
-import { closeModal } from '../../../../../../components/shared/modal/services/modalAction';
-import { fetchUserList } from '../../views/list/services/userListApi';
+import { addUser } from '../../services/userAction';
 
 const AddUser = () => {
   const [loading, setLoading] = useState(false);
@@ -26,15 +24,9 @@ const AddUser = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
-      const res = await addUser(dispatch, values, state.token);
-      if (res === 'success') {
-        resetForm();
-        await fetchUserList(dispatch, state.token);
-        dispatch(closeModal());
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
+      await addUser(dispatch, values, state.token);
+      resetForm();
+      setLoading(false);
     },
   });
   return (

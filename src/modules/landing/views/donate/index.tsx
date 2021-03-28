@@ -2,8 +2,20 @@ import React from 'react';
 import './donate.scss';
 import DonationForm from './component/donationForm';
 import Layout from '../../../../hoc/layout';
+import axios from 'axios';
 
 const Donate = () => {
+  const handlePayment = async () => {
+    console.log('trying to make payment.');
+    axios
+      .post('http://localhost:8000/api/paypal/')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <Layout
       description={'Movie where you can enjoy your favourite shows.'}
@@ -24,6 +36,9 @@ const Donate = () => {
         </div>
         <div className="payment-process mt-md w-30">
           <DonationForm />
+          <div className="btn primary" onClick={() => handlePayment()}>
+            Paypal
+          </div>
         </div>
       </main>
     </Layout>

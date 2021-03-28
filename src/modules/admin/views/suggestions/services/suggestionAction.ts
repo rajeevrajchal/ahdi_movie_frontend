@@ -30,9 +30,31 @@ export const getSuggestedMovie = async (dispatch: $FIXME, token: string) => {
     if (res.status == 200) {
       dispatch(getSuggestion(res.data.suggestions));
     } else {
-      dispatchToaster(dispatch, 'error', 'Failed To Stored Movie.');
+      dispatchToaster(dispatch, 'error', 'Failed To Stored Suggestion.');
     }
   } catch (e) {
     dispatchToaster(dispatch, 'Suggestion', 'Failed to retrieved suggestion.');
+  }
+};
+
+export const deleteSuggestion = async (
+  dispatch: $FIXME,
+  token: string,
+  suggestionUUID: string
+) => {
+  try {
+    const res = await axios.delete(`${api_url}suggestion/${suggestionUUID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status == 200) {
+      dispatch(getSuggestedMovie(dispatch, token));
+      dispatchToaster(dispatch, 'success', 'Suggestion Deleted Successfully.');
+    } else {
+      dispatchToaster(dispatch, 'error', 'Failed To Delete Suggestion.');
+    }
+  } catch (e) {
+    dispatchToaster(dispatch, 'Suggestion', 'Failed To Delete Suggestion.');
   }
 };

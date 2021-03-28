@@ -53,8 +53,19 @@ const Home = () => {
       >
         <main className="home">
           <Ads />
-          <Movie currentMovies={currentMovies} />
-          <Schedule current_movie={currentMovies} />
+          {currentMovies ? (
+            <>
+              <Movie currentMovies={currentMovies} />
+              <Schedule current_movie={currentMovies} />
+            </>
+          ) : (
+            <h3
+              style={{ textAlign: 'center', color: 'white' }}
+              className="mt-xl"
+            >
+              No Any Movie
+            </h3>
+          )}
         </main>
       </Layout>
     );

@@ -3,3 +3,8 @@ export enum MOVIESCREEN {
   LIST,
   SCHEDULE,
 }
+
+export enum MOVIETYPE {
+  list,
+  current,
+}

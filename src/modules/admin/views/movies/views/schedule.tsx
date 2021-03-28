@@ -51,7 +51,7 @@ const Schedule: FC<ScheduleInterface> = (props) => {
               <h3>
                 <i className="fa fa-play" aria-hidden="true"></i>
               </h3>
-              <h3 className="ml-md">{state.current_movie.length} min</h3>
+              <h3 className="ml-md">{state.current_movie.duration} min</h3>
             </div>
           </div>
           <ScheduleList scheduleList={state.schedule} />
