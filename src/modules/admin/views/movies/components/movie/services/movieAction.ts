@@ -40,22 +40,55 @@ export const fetchMovieList = async (dispatch: $FIXME, token: string) => {
 export const storeMovie = async (
   dispatch: $FIXME,
   movieDetail: $FIXME,
-  token: string
+  token: string,
+  movieUUID: string
 ) => {
   try {
-    const res = await axios.post(`${api_url}movie`, movieDetail, {
+    let res: $FIXME;
+    if (movieUUID) {
+      res = await axios.post(`${api_url}movie/${movieUUID}`, movieDetail, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } else {
+      res = await axios.post(`${api_url}movie`, movieDetail, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+    if (res.status == 201) {
+      dispatch(fetchMovieList(dispatch, token));
+      dispatchToaster(dispatch, 'success', ' Movie Updated Successfully.');
+      return res.data.status;
+    } else {
+      dispatchToaster(dispatch, 'error', 'Failed To Updated Movie.');
+    }
+  } catch (e) {
+    dispatchToaster(dispatch, 'error', 'Failed To Updated Movie.');
+  }
+};
+
+export const deleteMovie = async (
+  dispatch: $FIXME,
+  token: string,
+  movieUUID: string
+) => {
+  try {
+    const res = await axios.delete(`${api_url}movie/${movieUUID}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     if (res.status == 201) {
       dispatch(fetchMovieList(dispatch, token));
-      dispatchToaster(dispatch, 'success', ' Movie Stored Successfully.');
+      dispatchToaster(dispatch, 'success', ' Movie Deleted Successfully.');
       return res.data.status;
     } else {
-      dispatchToaster(dispatch, 'error', 'Failed To Stored Movie.');
+      dispatchToaster(dispatch, 'error', 'Failed To Delete Movie.');
     }
   } catch (e) {
-    dispatchToaster(dispatch, 'error', 'Failed To Stored Movie.');
+    dispatchToaster(dispatch, 'error', 'Failed To Delete Movie.');
   }
 };

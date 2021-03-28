@@ -49,6 +49,10 @@ const UserList = () => {
       sortable: false,
     },
   ];
+  const deleteAction = (obj: $FIXME) => {
+    console.log('delete action ');
+    console.log(obj);
+  };
   if (loading) {
     return (
       <div className="flex-centered">
@@ -60,7 +64,12 @@ const UserList = () => {
   } else {
     return (
       <div className="user-list">
-        <ListTable columns={columns} rows={users} paginate={5} />
+        <ListTable
+          deleteAction={deleteAction}
+          columns={columns}
+          rows={users}
+          paginate={5}
+        />
       </div>
     );
   }

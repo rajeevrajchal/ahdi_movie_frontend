@@ -6,7 +6,18 @@ import Breadcrumb from '../components/breadcrumb';
 import { MOVIESCREEN } from '../../../../../enum/movieEnum';
 import { Context } from '../../../../../context';
 import DataLoader from '../../../../../components/shared/dataLoader';
-import { fetchMovieList } from '../components/movie/services/movieAction';
+import {
+  deleteMovie,
+  fetchMovieList,
+} from '../components/movie/services/movieAction';
+import { $FIXME } from '../../../../../constants';
+import {
+  closeModal,
+  openModal,
+} from '../../../../../components/shared/modal/services/modalAction';
+import Modal from '../../../../../components/shared/modal';
+import NewMovie from '../components/movie/newMovie';
+import Confirm from '../../../../../components/shared/confirm';
 
 interface MovieListInterface {
   setScreen: (screen: MOVIESCREEN) => void;
@@ -15,6 +26,7 @@ interface MovieListInterface {
 const MovieList: FC<MovieListInterface> = (props) => {
   const [loading, setLoading] = useState<boolean>(false);
   const { state, dispatch } = useContext(Context);
+  const [selectedMovie, setSelectedMovie] = useState<$FIXME>({});
   const columns: ColumnType[] = [
     {
       field: '_id',
@@ -81,6 +93,30 @@ const MovieList: FC<MovieListInterface> = (props) => {
     getMovieList();
   }, []);
 
+  const deleteAction = async (obj: $FIXME) => {
+    setSelectedMovie(obj);
+    const modalData = {
+      show: true,
+      mode: 'delete',
+    };
+    dispatch(openModal(modalData));
+  };
+
+  const confirmDelete = async () => {
+    setLoading(true);
+    await dispatch(deleteMovie(dispatch, state.token, selectedMovie._id));
+    setLoading(false);
+  };
+
+  const editAction = (obj: $FIXME) => {
+    setSelectedMovie(obj);
+    const modalData = {
+      show: true,
+      mode: 'edit_movie',
+    };
+    dispatch(openModal(modalData));
+  };
+
   if (loading) {
     return (
       <div className="flex-centered">
@@ -91,14 +127,35 @@ const MovieList: FC<MovieListInterface> = (props) => {
     );
   } else {
     return (
-      <div className="movie-list">
-        <Breadcrumb
-          screen={MOVIESCREEN.CURRENT}
-          isBack={true}
-          setScreen={props.setScreen}
-        />
-        <ListTable columns={columns} rows={state.movie} paginate={10} />
-      </div>
+      <>
+        <div className="movie-list">
+          <Breadcrumb
+            screen={MOVIESCREEN.CURRENT}
+            isBack={true}
+            setScreen={props.setScreen}
+          />
+          <ListTable
+            editAction={editAction}
+            deleteAction={deleteAction}
+            columns={columns}
+            rows={state.movie}
+            paginate={10}
+          />
+        </div>
+        {state.modal.mode === 'edit_movie' && (
+          <Modal title={'Edit Movie'}>
+            <NewMovie editMovie={selectedMovie} isEditMode={true} />
+          </Modal>
+        )}
+        {state.modal.mode === 'delete' && (
+          <Modal title={'Delete'}>
+            <Confirm
+              cancelAction={dispatch(closeModal())}
+              confirmAction={confirmDelete}
+            />
+          </Modal>
+        )}
+      </>
     );
   }
 };

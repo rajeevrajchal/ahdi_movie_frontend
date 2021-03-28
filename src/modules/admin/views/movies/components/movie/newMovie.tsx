@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Modal from '../../../../../../components/shared/modal';
@@ -6,21 +6,27 @@ import BtnLoading from '../../../../../../components/shared/btnLoading';
 import { Context } from '../../../../../../context';
 import { closeModal } from '../../../../../../components/shared/modal/services/modalAction';
 import { storeMovie } from './services/movieAction';
+import { $FIXME } from '../../../../../../constants';
 
-const NewMovie = () => {
+interface NewMovieInterface {
+  editMovie?: $FIXME;
+  isEditMode?: boolean;
+}
+
+const NewMovie: FC<NewMovieInterface> = ({ editMovie, isEditMode }) => {
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useContext(Context);
   const formik = useFormik({
     initialValues: {
-      name: '',
-      poster: '',
-      rating: '',
-      tomato_rating: '',
-      language: '',
-      year: '',
-      duration: '',
-      description: '',
-      genres: ['action', 'comedy'],
+      name: editMovie ? editMovie.name : '',
+      poster: editMovie ? editMovie.poster : '',
+      rating: editMovie ? editMovie.rating : '',
+      tomato_rating: editMovie ? editMovie.tomato_rating : '',
+      language: editMovie ? editMovie.language : '',
+      year: editMovie ? editMovie.year : '',
+      duration: editMovie ? editMovie.duration : '',
+      description: editMovie ? editMovie.description : '',
+      genres: editMovie ? editMovie.genres : ['action', 'comedy'],
       uploader: state.user,
       uploaderUUID: state.user._id,
     },
@@ -39,7 +45,12 @@ const NewMovie = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
-      const res = await storeMovie(dispatch, values, state.token);
+      const res = await storeMovie(
+        dispatch,
+        values,
+        state.token,
+        editMovie ? editMovie._id : ''
+      );
       if (res === 'success') {
         resetForm();
         dispatch(closeModal());
@@ -186,7 +197,7 @@ const NewMovie = () => {
                 <div className="description ml-md">Saving</div>
               </div>
             ) : (
-              'Save'
+              <>{isEditMode ? 'Upload' : 'Save'}</>
             )}
           </div>
         </div>

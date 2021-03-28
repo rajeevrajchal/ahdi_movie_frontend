@@ -16,11 +16,15 @@ interface ListTableInterface {
   columns: ColumnType[];
   rows: $FIXME;
   paginate: number;
+  editAction?: (obj: $FIXME) => void;
+  deleteAction?: (obj: $FIXME) => void;
 }
 
 const ListTable: FC<ListTableInterface> = (props) => {
-  const { columns, rows, paginate } = props;
-
+  const { columns, rows, paginate, editAction, deleteAction } = props;
+  const hasActions = () => {
+    return editAction || deleteAction;
+  };
   const [startingVal, setStartingVal] = useState(0);
   const [endingVal, setEndingVal] = useState(
     paginate ? paginate : rows.length - 1
@@ -72,6 +76,11 @@ const ListTable: FC<ListTableInterface> = (props) => {
             <h2>{header.label}</h2>
           </div>
         ))}
+        {hasActions() && (
+          <div className={`table-header-items actions flex-2 text-center`}>
+            <h2>Actions</h2>
+          </div>
+        )}
       </div>
       {rows && rows.length !== 0 ? (
         <div className="table-body">
@@ -85,6 +94,30 @@ const ListTable: FC<ListTableInterface> = (props) => {
                   <h3>{rowData[columnHeader.field]}</h3>
                 </div>
               ))}
+              {hasActions() && (
+                <div className="table-body-items text-left flex-2 flex justify-center align-center items-center">
+                  {props.editAction && (
+                    <div className="text-left pointer">
+                      <i
+                        className="material-icons text-left text-primary"
+                        onClick={() => editAction?.(rowData)}
+                      >
+                        edit
+                      </i>
+                    </div>
+                  )}
+                  {props.deleteAction && (
+                    <div className="text-left pointer">
+                      <i
+                        className="material-icons text-left  text-danger"
+                        onClick={() => deleteAction?.(rowData)}
+                      >
+                        delete
+                      </i>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
