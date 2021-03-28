@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './movie.scss';
 
 import MovieImage from './components/movieImage';
@@ -7,31 +7,35 @@ import MovieExtra from './components/movieExtra';
 import MovieDesc from './components/movieDesc';
 import MovieGenres from './components/movieGenres';
 import MovieExternal from './components/movieExternal';
+import { $FIXME } from '../../../../../../constants';
 
-const Movie = () => {
+interface MovieInterface {
+  currentMovies: $FIXME;
+}
+const Movie: FC<MovieInterface> = ({ currentMovies }) => {
   return (
     <div className="movie flex align-center items-center">
       <MovieImage
-        media_image={
-          'https://img.yts.mx/assets/images/movies/Almost_Married_2014/large-cover.jpg'
-        }
-        alt_text={'Almost Married'}
+        media_image={currentMovies.poster}
+        alt_text={currentMovies.name}
       />
       <div className="movie-detail">
         <MovieLabel
-          liked={416}
-          rating={4.6}
-          year={2014}
-          title={'Almost Married'}
+          liked={currentMovies.like}
+          rating={currentMovies.imdbRating}
+          year={currentMovies.year}
+          title={currentMovies.name}
         />
-        <MovieExtra playback={97} lang={'english'} />
-        <MovieDesc
-          desc={
-            "When Kyle returns from his stag-do with a sexually transmitted disease, he's left unable to have sex with his fiancée Lydia in the run-up to their wedding."
-          }
+        <MovieExtra
+          playback={currentMovies.duration}
+          lang={currentMovies.language}
         />
-        <MovieExternal imdbRating={4.6} tomatoRating={70} />
-        <MovieGenres genres={['Action', 'Comedy']} />
+        <MovieDesc desc={currentMovies.description} />
+        <MovieExternal
+          imdbRating={currentMovies.imdbRating}
+          tomatoRating={currentMovies.tomato_rating}
+        />
+        <MovieGenres genres={currentMovies.genres} />
       </div>
     </div>
   );

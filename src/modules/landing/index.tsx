@@ -1,15 +1,15 @@
 import React from 'react';
 import './landing.scss';
 import Nav from './components/nav';
-import Home from './views/home';
-import Footer from './components/footer';
+import Routes from '../../route';
+import landing_route from './route';
 
 const Landing = () => {
   return (
     <main className="landing">
       <Nav />
-      <Home />
-      <Footer />
+      <Routes routeItems={landing_route} />
+      {/*<Footer />*/}
     </main>
   );
 };

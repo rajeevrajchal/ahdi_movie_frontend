@@ -25,7 +25,7 @@ const Head: React.FC<HeadInterface> = (props) => {
       <meta
         id="og-title"
         property="og:title"
-        content={`${title} ${title && '|'} Monotice `}
+        content={`${title} ${title && '|'} Movie `}
       />
       <meta
         id="og-image"

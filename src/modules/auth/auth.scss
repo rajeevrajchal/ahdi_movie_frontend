@@ -1,0 +1,9 @@
+@import "src/assets/styles/theme";
+
+main.auth {
+  min-height: 100vh;
+  background: url("../../assets/images/background.jpeg");
+  background-size: contain;
+  box-sizing: border-box;
+  color: $text-color;
+}

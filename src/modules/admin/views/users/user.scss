@@ -1,0 +1,30 @@
+@import "src/assets/styles/theme";
+main.user{
+  box-sizing: border-box;
+  .breadcrumb {
+    padding: $md;
+    border-radius: $md;
+    background: #fff;
+    margin: $md 0;
+    box-sizing: border-box;
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      padding: $sm;
+      margin-left: $md;
+      font-size: 25px;
+      color: $dark-color;
+      cursor: pointer;
+      border-radius: $md;
+      background: #fff;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        color: $btn-hover;
+      }
+    }
+  }
+
+}

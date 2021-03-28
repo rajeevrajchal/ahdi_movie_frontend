@@ -1,0 +1,82 @@
+@import "src/assets/styles/theme";
+
+.sidebar {
+  position: relative;
+  width: 250px;
+  box-shadow: 20px 20px 50px $light-color;
+  box-sizing: border-box;
+  padding: $md;
+
+  .sidebar-logo {
+    margin: auto;
+    width: 50%;
+    height: 70px;
+    box-sizing: border-box;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .sidebar-items {
+    margin-top: $lg;
+    box-sizing: border-box;
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      justify-content: center;
+      margin-top: $xl + $md;
+      color: $dark-color;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      box-sizing: border-box;
+
+      &:hover {
+        color: $primary-hover;
+      }
+
+      .sidebar-item-icon {
+        font-size: 25px;
+      }
+
+      .sidebar-item-label {
+        margin-left: 20px;
+      }
+
+      &.active {
+        transition: 0.3s ease-in-out;
+        border-radius: $md;
+        background: $dark-color;
+        color: #fff;
+        padding: $md;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    position: absolute;
+    padding: $lg;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+
+    .help {
+      background: $dark-color;
+      border-radius: $md;
+      padding: $md;
+      color: #fff;
+      text-align: center;
+      text-transform: capitalize;
+
+      span{
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+}

@@ -7,7 +7,6 @@ import { setToasterState } from './services/toasterAction';
 const Toaster = () => {
   const { state, dispatch } = useContext(Context);
   const { appear, title, name, message } = state.toaster;
-  console.log(state.toaster);
   useEffect(() => {
     const timer = setTimeout(() => {
       const toasterData: ToasterStateInterface = {

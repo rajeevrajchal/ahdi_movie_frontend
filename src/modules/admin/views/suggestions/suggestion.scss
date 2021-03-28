@@ -1,0 +1,10 @@
+@import "src/assets/styles/theme";
+main.suggestion{
+  box-sizing: border-box;
+  .suggestion-card{
+    border-radius: $md;
+    background: #FFFFFF;
+    padding: $md;
+
+  }
+}

@@ -1,0 +1,63 @@
+@import "src/assets/styles/theme";
+
+.admin-nav {
+  width: 100%;
+  box-sizing: border-box;
+
+  .admin-nav-icons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: flex-end;
+
+    .user-dropdown {
+      position: relative;
+      box-sizing: border-box;
+
+      .user-dropdown-content {
+        position: absolute;
+        display: none;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        border-radius: $md;
+        padding: $md;
+        margin-top: $md;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        .dropdown-item{
+          text-align: center;
+          margin-top: $md;
+          cursor: pointer;
+        }
+        &.show{
+          display: block;
+        }
+      }
+
+      i {
+        font-size: 25px;
+      }
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      padding: $sm;
+      margin-left: $md;
+      font-size: 25px;
+      color: $dark-color;
+      cursor: pointer;
+      border-radius: $md;
+      background: #fff;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        background: $btn-hover;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import React from 'react';
 export interface RouteInterface {
   path: string;
   component: React.FC;
-  isAuth?: boolean;
+  isAuth: boolean;
   isRole?: string;
   exact: boolean;
 }
