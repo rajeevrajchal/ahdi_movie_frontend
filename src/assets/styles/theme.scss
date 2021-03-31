@@ -286,7 +286,7 @@ a {
       outline: none;
 
       &::placeholder {
-        color: $dark-color;
+        color: $btn-hover;
       }
 
       &:focus {
