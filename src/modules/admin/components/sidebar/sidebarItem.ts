@@ -26,12 +26,12 @@ export const sidebarItems: sidebarItemsInterface[] = [
     icon: 'fa-play',
     role: [UserEnum.super_admin, UserEnum.admin],
   },
-  {
-    label: 'Donation',
-    link: '/admin/donation',
-    icon: 'fa-money',
-    role: [UserEnum.super_admin, UserEnum.admin],
-  },
+  // {
+  //   label: 'Donation',
+  //   link: '/admin/donation',
+  //   icon: 'fa-money',
+  //   role: [UserEnum.super_admin, UserEnum.admin],
+  // },
   {
     label: 'Suggestion',
     link: '/admin/suggestion',

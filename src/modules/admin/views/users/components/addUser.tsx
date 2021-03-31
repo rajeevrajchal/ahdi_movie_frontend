@@ -1,20 +1,24 @@
-import React, { useContext, useState } from 'react';
-import { UserEnum } from '../../../../../../enum/userEnum';
-import BtnLoading from '../../../../../../components/shared/btnLoading';
+import React, { FC, useContext, useState } from 'react';
+import { UserEnum } from '../../../../../enum/userEnum';
+import BtnLoading from '../../../../../components/shared/btnLoading';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Context } from '../../../../../../context';
-import { addUser } from '../../services/userAction';
+import { Context } from '../../../../../context';
+import { addUser } from '../services/userAction';
+import { $FIXME } from '../../../../../constants';
 
-const AddUser = () => {
+interface AddUserInterface {
+  selectedUser?: $FIXME;
+}
+const AddUser: FC<AddUserInterface> = ({ selectedUser }) => {
   const [loading, setLoading] = useState(false);
   const { dispatch, state } = useContext(Context);
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
+      name: selectedUser ? selectedUser.name : '',
+      email: selectedUser ? selectedUser.email : '',
       password: '',
-      role: '',
+      role: selectedUser ? selectedUser.role : '',
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Name is required'),
@@ -24,7 +28,7 @@ const AddUser = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
-      await addUser(dispatch, values, state.token);
+      await addUser(dispatch, values, state.token, selectedUser._id);
       resetForm();
       setLoading(false);
     },

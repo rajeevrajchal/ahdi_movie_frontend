@@ -41,15 +41,26 @@ export const fetchUserList = async (dispatch: $FIXME, token: string) => {
 export const addUser = async (
   dispatch: $FIXME,
   registerData: $FIXME,
-  token: string
+  token: string,
+  selectedUser: string
 ) => {
   try {
-    const res = await axios.post(`${api_url}auth/register`, registerData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (res.status == 201) {
+    let res: $FIXME;
+    if (selectedUser) {
+      res = await axios.post(`${api_url}users/${selectedUser}`, registerData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } else {
+      res = await axios.post(`${api_url}auth/register`, registerData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    if (res.status == 201 || 200) {
       dispatch(fetchUserList(dispatch, token));
       dispatch(closeModal());
       dispatchToaster(dispatch, 'success', 'User Stored Success');

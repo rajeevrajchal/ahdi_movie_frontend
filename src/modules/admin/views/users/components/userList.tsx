@@ -1,21 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import ListTable, {
   ColumnType,
-} from '../../../../../../components/shared/listtable';
-import { $FIXME } from '../../../../../../constants';
-import { Context } from '../../../../../../context';
-import DataLoader from '../../../../../../components/shared/dataLoader';
+} from '../../../../../components/shared/listtable';
+import { $FIXME } from '../../../../../constants';
+import { Context } from '../../../../../context';
+import DataLoader from '../../../../../components/shared/dataLoader';
 import {
   closeModal,
   openModal,
-} from '../../../../../../components/shared/modal/services/modalAction';
-import Modal from '../../../../../../components/shared/modal';
-import Confirm from '../../../../../../components/shared/confirm';
-import { deleteUser, fetchUserList } from '../../services/userAction';
+} from '../../../../../components/shared/modal/services/modalAction';
+import Modal from '../../../../../components/shared/modal';
+import Confirm from '../../../../../components/shared/confirm';
+import { deleteUser, fetchUserList } from '../services/userAction';
 
-const UserList = () => {
+interface UserListInterface {
+  setSelectedUser: (obj: $FIXME) => void;
+}
+const UserList: FC<UserListInterface> = ({ setSelectedUser }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedUser, setSelectedUser] = useState<$FIXME>({});
+  const [selectedUser, setSelectedUserDelete] = useState<$FIXME>({});
 
   const { state, dispatch } = useContext(Context);
   const getUserList = async () => {
@@ -59,7 +62,7 @@ const UserList = () => {
     },
   ];
   const deleteAction = async (obj: $FIXME) => {
-    setSelectedUser(obj);
+    setSelectedUserDelete(obj);
     const modalData = {
       show: true,
       mode: 'delete_movie',
@@ -72,6 +75,15 @@ const UserList = () => {
     await dispatch(deleteUser(dispatch, state.token, selectedUser._id));
     dispatch(closeModal());
     setLoading(false);
+  };
+
+  const editAction = (obj: $FIXME) => {
+    setSelectedUser(obj);
+    const modalData = {
+      show: true,
+      mode: 'add_user',
+    };
+    dispatch(openModal(modalData));
   };
 
   const handleCloseModal = () => {
@@ -91,6 +103,7 @@ const UserList = () => {
       <div className="user-list">
         <ListTable
           deleteAction={deleteAction}
+          editAction={editAction}
           columns={columns}
           rows={state.users}
           paginate={5}
