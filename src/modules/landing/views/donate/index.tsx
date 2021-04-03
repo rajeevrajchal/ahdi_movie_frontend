@@ -1,21 +1,67 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import './donate.scss';
-import DonationForm from './component/donationForm';
 import Layout from '../../../../hoc/layout';
+import { $FIXME } from '../../../../constants';
 import axios from 'axios';
+import { Context } from '../../../../context';
+import { ToasterStateInterface } from '../../../../components/shared/toaster/services/toasterReducer';
+import { setToasterState } from '../../../../components/shared/toaster/services/toasterAction';
 
 const Donate = () => {
-  const handlePayment = async () => {
-    console.log('trying to make payment.');
-    axios
-      .post('http://localhost:8000/api/paypal/')
-      .then((res) => {
-        console.log(res);
+  const [paid, setPaid] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const paypalRef = useRef<$FIXME>();
+  const { dispatch } = useContext(Context);
+
+  useEffect(() => {
+    const wind: $FIXME = window;
+    wind.paypal
+      .Buttons({
+        createOrder: (data: $FIXME, actions: $FIXME) => {
+          return actions.order.create({
+            intent: 'CAPTURE',
+            purchase_units: [
+              {
+                description: 'Donation',
+                amount: {
+                  currency_code: 'USD',
+                  value: 5.0,
+                },
+              },
+            ],
+          });
+        },
+        onApprove: async (data: $FIXME, actions: $FIXME) => {
+          const order = await actions.order.capture();
+          const api_url = process.env.REACT_APP_API_URL;
+          const body: $FIXME = {
+            name: `${
+              order.payer.name.given_name + ' ' + order.payer.name.surname
+            }`,
+            country_code: order.payer.address.country_code,
+            email: order.payer.address.email_address,
+            currency: order.purchase_units[0].amount.currency_code,
+            amount: order.purchase_units[0].amount.value,
+            payment_id: order.id,
+          };
+          await axios.post(`${api_url}donation`, body);
+          setPaid(true);
+        },
+        onError: (err: $FIXME) => {
+          setError(err), console.error(err);
+        },
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      .render(paypalRef.current);
+  }, []);
+  if (error) {
+    const toaster: ToasterStateInterface = {
+      appear: true,
+      message: 'Payment Failed',
+      title: 'Error',
+      name: 'Donation.',
+    };
+    dispatch(setToasterState(toaster));
+  }
   return (
     <Layout
       description={'Movie where you can enjoy your favourite shows.'}
@@ -33,12 +79,15 @@ const Donate = () => {
               with so long and enjoy you time.{' '}
             </p>
           </div>
-        </div>
-        <div className="payment-process mt-md w-30">
-          <DonationForm />
-          <div className="btn primary" onClick={() => handlePayment()}>
-            Paypal
+
+          <div className="mt-lg">
+            {paid ? (
+              <div className="heading_text">Payment successful.!</div>
+            ) : (
+              <div ref={paypalRef} />
+            )}
           </div>
+          {error && <p className="text-error">Payment Failed</p>}
         </div>
       </main>
     </Layout>

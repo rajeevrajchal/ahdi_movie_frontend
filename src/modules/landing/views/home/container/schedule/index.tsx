@@ -10,7 +10,7 @@ const Schedule: FC<ScheduleInterface> = ({ current_movie }) => {
   return (
     <div className="schedule mt-xl">
       <div className="label">
-        <h2>Book your show</h2>
+        <h2>Show time</h2>
       </div>
       <SchedulingList current_movie={current_movie} />
     </div>

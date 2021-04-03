@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './adminNav.scss';
 import { Context } from '../../../../context';
 import { logout } from '../../../auth/services/loginAction';
@@ -7,6 +7,11 @@ const AdminNav = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { state, dispatch } = useContext(Context);
   const { user } = state;
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('click', () => setIsOpen(!isOpen));
+    }
+  }, [isOpen]);
   return (
     <div className="admin-nav">
       <div className="admin-nav-icons">
