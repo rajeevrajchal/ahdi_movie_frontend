@@ -27,6 +27,7 @@ module.exports = {
     'no-alert': 'error',
     'no-debugger': 'error',
     'no-mixed-spaces-and-tabs': 0,
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-duplicate-imports': ['error'],
