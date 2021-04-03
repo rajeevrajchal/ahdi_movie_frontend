@@ -32,7 +32,7 @@ const Nav = () => {
           <span>Home</span>
         </NavLink>
         <NavLink to={'/schedule'} className="nav-menu-item">
-          <span>Suggestion</span>
+          <span>Suggest a movie</span>
         </NavLink>
         <NavLink to={'/donate'} className="nav-menu-item">
           <span>Donate</span>

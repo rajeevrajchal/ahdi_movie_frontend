@@ -30,7 +30,7 @@ export const sidebarItems: sidebarItemsInterface[] = [
     label: 'Donation',
     link: '/admin/donation',
     icon: 'fa-money',
-    role: [UserEnum.super_admin, UserEnum.admin],
+    role: [UserEnum.super_admin],
   },
   {
     label: 'Suggestion',
