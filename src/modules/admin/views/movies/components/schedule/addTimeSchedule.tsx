@@ -40,7 +40,7 @@ const AddTimeSchedule = () => {
               value={formik.values.slot}
               onChange={formik.handleChange}
               name="slot"
-              type="time"
+              type="datetime-local"
               placeholder="Time Slot"
             />
           </div>

@@ -8,7 +8,7 @@ interface ScheduleInterface {
 }
 const Schedule: FC<ScheduleInterface> = ({ current_movie }) => {
   return (
-    <div className="schedule mt-xl">
+    <div className="schedule mt-xs">
       <div className="label">
         <h2>Show time</h2>
       </div>

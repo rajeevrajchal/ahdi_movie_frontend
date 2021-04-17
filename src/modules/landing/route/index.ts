@@ -3,11 +3,18 @@ import Home from '../views/home';
 import Schedule from '../views/landingSchedule';
 import Donate from '../views/donate';
 import Play from '../views/play';
+import Demo from '../views/demo';
 
 const landing_route: RouteInterface[] = [
   {
     path: '/',
     component: Home,
+    isAuth: false,
+    exact: true,
+  },
+  {
+    path: '/demo',
+    component: Demo,
     isAuth: false,
     exact: true,
   },

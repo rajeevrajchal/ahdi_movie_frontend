@@ -18,6 +18,18 @@ const Play = () => {
       },
     ],
   };
+  // useEffect(() => {
+  //   const script = document.createElement('script');
+  //   script.src =
+  //     'https://player.dacast.com/js/player.js?contentId=1cef67df-e7f8-50fc-37c0-9505d154498b-live-6d83e11a-9757-fb19-7ac5-606b48a6d7f0';
+  //   script.async = true;
+  //   script.id =
+  //     '1cef67df-e7f8-50fc-37c0-9505d154498b-live-6d83e11a-9757-fb19-7ac5-606b48a6d7f0';
+  //   script.className = 'dacast-video';
+  //
+  //   document.body.appendChild(script);
+  // }, []);
+
   return (
     <Layout
       description={'Movie where you can enjoy your favourite shows.'}

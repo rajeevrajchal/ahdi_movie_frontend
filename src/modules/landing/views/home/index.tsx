@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import './home.scss';
 import Layout from '../../../../hoc/layout';
 import Schedule from './container/schedule';
-import Ads from './container/ads';
 import Movie from './container/movie';
 import { getCurrentMovie } from './services/current_movie/currentMovieAction';
 import { $FIXME } from '../../../../constants';
@@ -52,7 +51,6 @@ const Home = () => {
         title={''}
       >
         <main className="home">
-          <Ads />
           {currentMovies ? (
             <>
               <Movie currentMovies={currentMovies} />

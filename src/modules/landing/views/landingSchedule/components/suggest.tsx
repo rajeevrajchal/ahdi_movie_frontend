@@ -30,7 +30,7 @@ const Suggest = () => {
   return (
     <>
       <div className="label">
-        <h1 style={{ textAlign: 'center' }}>Suggest Your Movie</h1>
+        <h1 style={{ textAlign: 'center' }}>Suggest a movie</h1>
       </div>
       <div className="suggest w-30 mt-lg">
         <div className="input-group">

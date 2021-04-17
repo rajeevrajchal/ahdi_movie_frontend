@@ -3,6 +3,7 @@ import { $FIXME } from '../../../../../../../constants';
 import axios from 'axios';
 import { ToasterStateInterface } from '../../../../../../../components/shared/toaster/services/toasterReducer';
 import { setToasterState } from '../../../../../../../components/shared/toaster/services/toasterAction';
+
 const api_url = process.env.REACT_APP_API_URL;
 
 const getSchedule = (schedule: $FIXME) => ({
@@ -22,7 +23,7 @@ const dispatchToaster = (dispatch: $FIXME, title: string, message: string) => {
 
 export const fetchSchedule = async (dispatch: $FIXME, movieUUID: $FIXME) => {
   try {
-    const res = await axios.get(`${api_url}schedule/movie/${movieUUID}`);
+    const res = await axios.get(`${api_url}schedule/${movieUUID}`);
     if (res.status == 200) {
       dispatch(getSchedule(res.data.currentMovieSchedule));
     } else {
@@ -40,7 +41,7 @@ export const storeSchedule = async (
   movieUUID: $FIXME
 ) => {
   try {
-    const res = await axios.post(`${api_url}schedule/movie`, schedule, {
+    const res = await axios.post(`${api_url}schedule`, schedule, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

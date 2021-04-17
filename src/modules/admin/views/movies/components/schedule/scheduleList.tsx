@@ -3,9 +3,11 @@ import TimeSlot from './components/timeSlot';
 import { Context } from '../../../../../../context';
 import { openModal } from '../../../../../../components/shared/modal/services/modalAction';
 import { $FIXME } from '../../../../../../constants';
+
 interface ScheduleListInterface {
   scheduleList: $FIXME;
 }
+
 const ScheduleList: FC<ScheduleListInterface> = (props) => {
   const { scheduleList } = props;
   const { dispatch } = useContext(Context);
@@ -28,14 +30,14 @@ const ScheduleList: FC<ScheduleListInterface> = (props) => {
         </div>
       </div>
       <div className="list flex wrap align-center items-center mt-md">
-        {scheduleList ? (
+        {scheduleList.length ? (
           scheduleList.map((schedule: $FIXME, key: number) => (
             <div key={key}>
               <TimeSlot schedule={schedule} />
             </div>
           ))
         ) : (
-          <p>No Schedule Data</p>
+          <p style={{ textAlign: 'center' }}>No Schedule Data</p>
         )}
       </div>
     </div>

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Context } from '../../../../context';
 import { ToasterStateInterface } from '../../../../components/shared/toaster/services/toasterReducer';
 import { setToasterState } from '../../../../components/shared/toaster/services/toasterAction';
+import { Adsense } from '@ctrl/react-adsense';
 
 const Donate = () => {
   const [paid, setPaid] = React.useState(false);
@@ -50,6 +51,7 @@ const Donate = () => {
           onApprove: async (data: $FIXME, actions: $FIXME) => {
             const order = await actions.order.capture();
             const api_url = process.env.REACT_APP_API_URL;
+            setPaid(true);
             const body: $FIXME = {
               name: `${
                 order.payer.name.given_name + ' ' + order.payer.name.surname
@@ -61,7 +63,6 @@ const Donate = () => {
               payment_id: order.id,
             };
             await axios.post(`${api_url}donation`, body);
-            setPaid(true);
           },
           onError: (err: $FIXME) => {
             setError(err), console.error(err);
@@ -87,7 +88,19 @@ const Donate = () => {
       title={'Donation'}
     >
       <main className="donate flex column align-center items-center justify-center">
-        <div className="heading text-center">
+        <Adsense
+          client="ca-pub-4591861188995436"
+          slot="6710577704"
+          style={{
+            display: 'inline-block',
+            height: 90,
+            width: '70%',
+            background: 'white',
+          }}
+          layout="in-article"
+          format="fluid"
+        />
+        <div className="heading text-center mt-md mb-md">
           <div className="label">
             <h1>Support the project</h1>
           </div>
@@ -130,6 +143,18 @@ const Donate = () => {
           </div>
           {error && <p className="text-error">Payment Failed</p>}
         </div>
+        <Adsense
+          client="ca-pub-4591861188995436"
+          slot="6710577704"
+          style={{
+            display: 'inline-block',
+            height: 90,
+            width: '70%',
+            background: 'white',
+          }}
+          layout="in-article"
+          format="fluid"
+        />
       </main>
     </Layout>
   );

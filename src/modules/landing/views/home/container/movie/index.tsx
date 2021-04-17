@@ -8,13 +8,28 @@ import MovieDesc from './components/movieDesc';
 import MovieGenres from './components/movieGenres';
 import MovieExternal from './components/movieExternal';
 import { $FIXME } from '../../../../../../constants';
+import { Adsense } from '@ctrl/react-adsense';
 
 interface MovieInterface {
   currentMovies: $FIXME;
 }
+
 const Movie: FC<MovieInterface> = ({ currentMovies }) => {
   return (
     <div className="movie flex align-center items-center ">
+      <Adsense
+        client="ca-pub-4591861188995436"
+        slot="6710577704"
+        style={{
+          width: 70,
+          position: 'absolute',
+          top: '50%',
+          right: 0,
+          background: 'white',
+        }}
+        layout="in-article"
+        format="fluid"
+      />
       <MovieImage
         media_image={currentMovies.poster}
         alt_text={currentMovies.name}
