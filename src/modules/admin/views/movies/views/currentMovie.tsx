@@ -9,6 +9,8 @@ import { Context } from '../../../../../context';
 import { $FIXME } from '../../../../../constants';
 import DataLoader from '../../../../../components/shared/dataLoader';
 import { getCurrentMovie } from '../../../../landing/views/home/services/current_movie/currentMovieAction';
+import { openModal } from '../../../../../components/shared/modal/services/modalAction';
+import AddMovieLink from '../components/movie/add_movie_link';
 
 interface CurrentMovieInterface {
   setScreen: (screen: MOVIESCREEN) => void;
@@ -31,7 +33,16 @@ const CurrentMovie: FC<CurrentMovieInterface> = (props) => {
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const { dispatch } = useContext(Context);
+  const { dispatch, state } = useContext(Context);
+  const { mode } = state.modal;
+
+  const handleAddMovieLink = () => {
+    const modalData = {
+      show: true,
+      mode: 'add_movie_link',
+    };
+    dispatch(openModal(modalData));
+  };
   const fetchData = async () => {
     setLoading(true);
     const res = await getCurrentMovie(dispatch);
@@ -69,11 +80,15 @@ const CurrentMovie: FC<CurrentMovieInterface> = (props) => {
                 >
                   <h3> Schedule</h3>
                 </div>
-                <div className="btn primary flex align-center items-center ml-md">
-                  <h3 className="mr-md">
-                    <i className="fa fa-close" aria-hidden="true"></i>
+                <div
+                  className="btn primary flex align-center items-center ml-md"
+                  onClick={() => handleAddMovieLink()}
+                >
+                  <h3>
+                    {currentMovies.movie_link
+                      ? 'Change Movie Link'
+                      : 'Add Movie Link'}
                   </h3>
-                  <h3>Close BroadCast</h3>
                 </div>
               </div>
             </div>
@@ -110,12 +125,19 @@ const CurrentMovie: FC<CurrentMovieInterface> = (props) => {
                 />
               </div>
             </div>
+            <div className="mt-md">
+              <h3>Movie Link</h3>
+              <h5 className="mt-md" style={{ color: '#999999' }}>
+                {currentMovies.movie_link}
+              </h5>
+            </div>
           </div>
         ) : (
           <h3 style={{ textAlign: 'center' }} className="mt-xl">
             No Current Movie
           </h3>
         )}
+        {mode === 'add_movie_link' && <AddMovieLink />}
       </>
     );
   }

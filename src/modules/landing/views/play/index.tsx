@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './play.scss';
 import { useParams } from 'react-router-dom';
 import Layout from '../../../../hoc/layout';
 import { $FIXME } from '../../../../constants';
+import axios from 'axios';
+
+const api_url = process.env.REACT_APP_API_URL;
 
 const Play = () => {
   const { movieID } = useParams<$FIXME>();
+  const [movie, setMovie] = useState<$FIXME>({});
+  console.log(movie);
+  const getMovieLink = async () => {
+    const res = await axios.get(`${api_url}movie/${movieID}`);
+    setMovie(res.data.movie);
+  };
+  useEffect(() => {
+    getMovieLink();
+  }, []);
+
   return (
     <Layout
       description={'Movie where you can enjoy your favourite shows.'}
@@ -18,17 +31,7 @@ const Play = () => {
             <h3>Video Id: {movieID}</h3>
           </div>
         </div>
-        <div className="video-player">
-          <iframe
-            src="https://iframe.dacast.com/vod/16cdc8d1-d726-be08-f15d-df81c6b2ecca/b9bd075f-ab8b-71ef-305f-af1e84cbadad"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            scrolling="yes"
-            allow="autoplay"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <div className="video-player"></div>
       </main>
     </Layout>
   );
