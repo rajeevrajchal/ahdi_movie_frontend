@@ -7,6 +7,7 @@ import { getCurrentMovie } from './services/current_movie/currentMovieAction';
 import { $FIXME } from '../../../../constants';
 import { Context } from '../../../../context';
 import DataLoader from '../../../../components/shared/dataLoader';
+import { Adsense } from '@ctrl/react-adsense';
 
 const Home = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -50,20 +51,62 @@ const Home = () => {
         keywords={['movie', 'shows']}
         title={''}
       >
-        <main className="home">
-          {currentMovies ? (
-            <>
-              <Movie currentMovies={currentMovies} />
-              <Schedule />
-            </>
-          ) : (
-            <h3
-              style={{ textAlign: 'center', color: 'white' }}
-              className="mt-xl"
-            >
-              No Any Movie
-            </h3>
-          )}
+        <main className="home flex ">
+          <div
+            className="first-ads"
+            style={{
+              width: '200px',
+              background: 'white',
+            }}
+          >
+            <Adsense
+              client="ca-pub-4591861188995436"
+              slot="6710577704"
+              style={{
+                display: 'inline-block',
+                height: '100%',
+                width: '100%',
+                background: 'red',
+              }}
+              layout="in-article"
+              format="fluid"
+            />
+          </div>
+          <div className="main-content flex-1">
+            {currentMovies ? (
+              <>
+                <Movie currentMovies={currentMovies} />
+                <Schedule />
+              </>
+            ) : (
+              <h3
+                style={{ textAlign: 'center', color: 'white' }}
+                className="mt-xl"
+              >
+                No Any Movie
+              </h3>
+            )}
+          </div>
+          <div
+            className="second-ads"
+            style={{
+              width: '200px',
+              background: 'white',
+            }}
+          >
+            <Adsense
+              client="ca-pub-4591861188995436"
+              slot="6710577704"
+              style={{
+                display: 'inline-block',
+                height: '100%',
+                width: '100%',
+                background: 'red',
+              }}
+              layout="in-article"
+              format="fluid"
+            />
+          </div>
         </main>
       </Layout>
     );

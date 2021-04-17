@@ -25,7 +25,7 @@ const Schedule = () => {
     return <p>loading</p>;
   } else {
     return (
-      <div className="schedule mt-xs">
+      <div className="schedule">
         <div className="label">
           <h2>Show time</h2>
         </div>

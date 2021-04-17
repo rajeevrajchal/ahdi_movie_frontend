@@ -1,18 +1,24 @@
 @import "src/assets/styles/theme";
+
 main.home {
+  width: 100%;
   min-height: 100vh;
+
   &::-webkit-scrollbar {
     display: none;
   }
+
   background: url("../../../../assets/images/background.jpeg") no-repeat;
   background-size: cover;
   box-sizing: border-box;
-  .home-banner{
+
+  .home-banner {
     position: relative;
     height: calc(90vh - 20px);
     margin-top: -10vh;
     box-sizing: border-box;
-    .image-area{
+
+    .image-area {
       position: absolute;
       height: 100%;
       width: 100%;
@@ -21,5 +27,10 @@ main.home {
       //background: url("../../../../assets/images/background.jpeg") no-repeat;
       background-size: cover;
     }
+  }
+
+  .right-side-ads {
+    position: absolute;
+    z-index: 999;
   }
 }

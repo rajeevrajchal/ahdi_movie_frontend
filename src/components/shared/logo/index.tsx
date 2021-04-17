@@ -1,10 +1,11 @@
 import React from 'react';
 import './logo.scss';
+import logo from '../../../assets/images/KlickMovies.png';
 
 const Logo = () => {
   return (
     <div className="logo">
-      <img src="/logo512.png" alt="" />
+      <img src={logo} alt="klick Movie" />
     </div>
   );
 };

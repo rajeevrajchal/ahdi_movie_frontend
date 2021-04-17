@@ -57,7 +57,7 @@ const TimeSlot: FC<TimeSlotInterface> = ({ schedule }) => {
           }`}
         >
           <div className="label text-center">
-            {moment(schedule.time).format('LLL')}
+            {moment(schedule.slot).format('LLL')}
           </div>
           <div className="actions pointer">
             <i

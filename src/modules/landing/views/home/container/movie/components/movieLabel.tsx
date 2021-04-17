@@ -17,13 +17,19 @@ const MovieLabel: FC<MovieLabelInterface> = (props) => {
           <span>{year}</span>
         </div>
         {liked && (
-          <div className="liked ml-xl flex align-center items-center">
-            <span>{liked}</span>
+          <div
+            className="liked ml-xl flex align-center items-center"
+            style={{ color: '#ffffff' }}
+          >
+            <span style={{ color: '#ffffff' }}>{liked ?? 0}</span>
             <i className="fa fa-thumbs-up ml-md" aria-hidden="true"></i>
           </div>
         )}
-        <div className="rating ml-xl flex align-center items-center">
-          <span>{rating}</span>
+        <div
+          className="rating ml-xl flex align-center items-center"
+          style={{ color: '#ffffff' }}
+        >
+          <span style={{ color: '#ffffff' }}>{rating ?? 0}</span>
           <i className="fa fa-star ml-md" aria-hidden="true"></i>
         </div>
       </div>
