@@ -54,7 +54,7 @@ const Home = () => {
           {currentMovies ? (
             <>
               <Movie currentMovies={currentMovies} />
-              <Schedule current_movie={currentMovies} />
+              <Schedule />
             </>
           ) : (
             <h3

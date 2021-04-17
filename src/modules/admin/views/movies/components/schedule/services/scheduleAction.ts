@@ -58,3 +58,57 @@ export const storeSchedule = async (
     dispatchToaster(dispatch, 'error', 'Failed To stored schedule.');
   }
 };
+
+export const disableSchedule = async (
+  dispatch: $FIXME,
+  token: string,
+  scheduleUUID: string,
+  movieUUID: string,
+  newObject: $FIXME
+) => {
+  try {
+    console.log(scheduleUUID);
+    const res = await axios.post(
+      `${api_url}schedule/${scheduleUUID}`,
+      newObject,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (res.status == 200) {
+      dispatch(fetchSchedule(dispatch, movieUUID));
+      dispatchToaster(dispatch, 'success', 'Schedule Updated Successfully.');
+    } else {
+      dispatchToaster(dispatch, 'error', 'Failed To stored schedule.');
+      return res.data.status;
+    }
+  } catch (e) {
+    dispatchToaster(dispatch, 'error', 'Failed To update schedule.');
+  }
+};
+
+export const deleteSchedule = async (
+  dispatch: $FIXME,
+  token: string,
+  scheduleUUID: string,
+  movieUUID: string
+) => {
+  try {
+    const res = await axios.delete(`${api_url}schedule/${scheduleUUID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status == 200) {
+      dispatch(fetchSchedule(dispatch, movieUUID));
+      dispatchToaster(dispatch, 'success', 'Schedule Deleted Successfully.');
+    } else {
+      dispatchToaster(dispatch, 'error', 'Failed To Deleted schedule.');
+      return res.data.status;
+    }
+  } catch (e) {
+    dispatchToaster(dispatch, 'error', 'Failed To Deleted schedule.');
+  }
+};

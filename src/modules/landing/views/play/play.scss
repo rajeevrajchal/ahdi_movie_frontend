@@ -1,17 +1,24 @@
 @import "src/assets/styles/theme";
-main.play{
+
+main.play {
   padding: 30px 5vw;
   min-height: 92vh;
   background: url("../../../../assets/images/background.jpeg");
   background-size: contain;
   box-sizing: border-box;
   color: $text-color;
-  .video-player{
+
+  .video-player {
     display: flex;
     justify-content: center;
     align-items: center;
     justify-items: center;
-    .player{
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      box-sizing: border-box;
+      border-radius: $md;
       box-shadow: 1px 1px 10px $light-color;
     }
   }

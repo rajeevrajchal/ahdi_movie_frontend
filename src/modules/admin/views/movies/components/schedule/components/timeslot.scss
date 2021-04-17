@@ -1,10 +1,14 @@
-.s-item{
+.s-item {
   background: red;
   padding: 10px;
   border-radius: 10px;
-  width: 100px;
+  width: 200px;
   margin-right: 20px;
-  margin-bottom: 20px ;
+  margin-bottom: 20px;
   box-sizing: border-box;
   color: #FFFFFF;
+}
+
+.deactivate {
+  background: #cccccc;
 }

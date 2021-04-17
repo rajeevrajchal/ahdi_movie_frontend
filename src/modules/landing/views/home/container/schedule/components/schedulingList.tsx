@@ -10,11 +10,11 @@ import { setToasterState } from '../../../../../../../components/shared/toaster/
 const api_url = process.env.REACT_APP_API_URL;
 
 interface SchedulingListInterface {
-  current_movie: $FIXME;
+  scheduleList: $FIXME;
 }
 
-const SchedulingList: FC<SchedulingListInterface> = ({ current_movie }) => {
-  const { dispatch } = useContext(Context);
+const SchedulingList: FC<SchedulingListInterface> = ({ scheduleList }) => {
+  const { dispatch, state } = useContext(Context);
   const history = useHistory();
   const date = new Date();
   const clockTime = date.getTime();
@@ -30,7 +30,7 @@ const SchedulingList: FC<SchedulingListInterface> = ({ current_movie }) => {
       };
       dispatch(setToasterState(toaster));
     } else {
-      history.push('/play/124907612345678');
+      history.push(`/play/${state.current_movie._id}`);
       const toaster: ToasterStateInterface = {
         appear: true,
         message: 'Movie Playing',
@@ -42,7 +42,7 @@ const SchedulingList: FC<SchedulingListInterface> = ({ current_movie }) => {
   };
   return (
     <div className="schedule-slots mt-md flex wrap">
-      {current_movie.schedule.map((sheduleitem: $FIXME, key: number) => (
+      {scheduleList.map((sheduleitem: $FIXME, key: number) => (
         <button
           className={`btn ${
             clockTime >= Date.parse(sheduleitem.time)
@@ -52,7 +52,7 @@ const SchedulingList: FC<SchedulingListInterface> = ({ current_movie }) => {
           onClick={() => handleClick(sheduleitem.time)}
           key={key}
         >
-          <span> {moment(sheduleitem.time).format('LTS')} </span>
+          <span> {moment(sheduleitem.time).format('LLL')} </span>
         </button>
       ))}
     </div>

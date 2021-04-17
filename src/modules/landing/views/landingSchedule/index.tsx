@@ -3,14 +3,8 @@ import './schedule.scss';
 import Layout from '../../../../hoc/layout';
 import Suggest from './components/suggest';
 import { Adsense } from '@ctrl/react-adsense';
-// import { $FIXME } from '../../../../constants';
 
 const LandingSchedule = () => {
-  // const browser_window: $FIXME = window;
-  // useEffect(() => {
-  //   (browser_window.adsbygoogle = browser_window.adsbygoogle || []).push({});
-  //   console.log('DID IT!!');
-  // }, []);
   return (
     <Layout
       description={'Movie where you can enjoy your favourite shows.'}
