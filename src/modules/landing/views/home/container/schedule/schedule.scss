@@ -7,9 +7,47 @@
   box-sizing: border-box;
 
   .label {
+    position: relative;
     width: 100%;
     color: $light-color;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    box-sizing: border-box;
+
+    .hint-icon {
+      position: relative;
+      margin-left: $md;
+      margin-top: $xs;
+      background: $light-color;
+      color: $dark-color;
+      text-transform: lowercase;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      .hint-icon-dropdown {
+        visibility: hidden;
+        position: absolute;
+        top: -50px;
+        left: 50px;
+        background: #cccccc;
+        padding: $md;
+        border-radius: $sm;
+        width: 300px;
+        color: $dark-color;
+        box-sizing: border-box;
+
+      }
+      &:hover {
+        .hint-icon-dropdown{
+          visibility: visible;
+        }
+      }
+    }
   }
 
   .schedule-slots {

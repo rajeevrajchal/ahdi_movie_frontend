@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import './sidebar.scss';
 import { sidebarItems, sidebarItemsInterface } from './sidebarItem';
 import { Context } from '../../../../context';
+import logo from '../../../../assets/images/KlickMovies.png';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
-        <img src="/logo512.png" alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
       <div className="sidebar-items">
         {sidebarItems.map((item: sidebarItemsInterface, key: number) => (

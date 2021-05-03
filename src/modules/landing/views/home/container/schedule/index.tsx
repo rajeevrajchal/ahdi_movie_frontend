@@ -28,6 +28,14 @@ const Schedule = () => {
       <div className="schedule">
         <div className="label">
           <h2>Show time</h2>
+          <div className="hint-icon">
+            i
+            <div className="hint-icon-dropdown">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus amet cum eum ipsum, officiis repellat tenetur veritatis
+              voluptatum? Recusandae, saepe?
+            </div>
+          </div>
         </div>
         <SchedulingList scheduleList={scheduleList} />
       </div>

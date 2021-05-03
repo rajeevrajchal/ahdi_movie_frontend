@@ -52,26 +52,26 @@ const Home = () => {
         title={''}
       >
         <main className="home flex ">
-          <div
-            className="first-ads"
-            style={{
-              width: '200px',
-              background: 'white',
-            }}
-          >
-            <Adsense
-              client="ca-pub-4591861188995436"
-              slot="6710577704"
-              style={{
-                display: 'inline-block',
-                height: '100%',
-                width: '100%',
-                background: 'red',
-              }}
-              layout="in-article"
-              format="fluid"
-            />
-          </div>
+          {/*<div*/}
+          {/*  className="first-ads"*/}
+          {/*  style={{*/}
+          {/*    width: '200px',*/}
+          {/*    background: 'white',*/}
+          {/*  }}*/}
+          {/*>*/}
+          {/*  <Adsense*/}
+          {/*    client="ca-pub-4591861188995436"*/}
+          {/*    slot="6710577704"*/}
+          {/*    style={{*/}
+          {/*      display: 'inline-block',*/}
+          {/*      height: '100%',*/}
+          {/*      width: '100%',*/}
+          {/*      background: 'red',*/}
+          {/*    }}*/}
+          {/*    layout="in-article"*/}
+          {/*    format="fluid"*/}
+          {/*  />*/}
+          {/*</div>*/}
           <div className="main-content flex-1">
             {currentMovies ? (
               <>
@@ -90,7 +90,10 @@ const Home = () => {
           <div
             className="second-ads"
             style={{
-              width: '200px',
+              marginTop: '100px',
+              marginRight: '40px',
+              width: '250px',
+              height: '500px',
               background: 'white',
             }}
           >

@@ -29,10 +29,10 @@ const Suggest = () => {
   });
   return (
     <>
-      <div className="label">
+      <div className="label flex justify-center align-center items-center">
         <h1 style={{ textAlign: 'center' }}>Suggest a movie</h1>
       </div>
-      <div className="suggest w-30 mt-lg">
+      <div className="suggest w-50 mt-lg">
         <div className="input-group">
           <div className="input-box">
             <input

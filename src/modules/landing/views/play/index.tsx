@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import Layout from '../../../../hoc/layout';
 import { $FIXME } from '../../../../constants';
 import axios from 'axios';
-import { Adsense } from '@ctrl/react-adsense';
+import PlayerBody from './container/player_body';
+import AdsContent from '../../components/ads/ads_content';
 
 const api_url = process.env.REACT_APP_API_URL;
 
@@ -20,51 +21,22 @@ const Play = () => {
     getMovieLink();
   }, []);
 
-  const createMarkup = () => {
-    return { __html: movie.movie_link };
-  };
-
-  console.log(movie);
-
   return (
     <Layout
       description={'Movie where you can enjoy your favourite shows.'}
       keywords={['movie', 'shows']}
       title={'Playing Movie'}
     >
-      <main className="play">
-        <div className="header">
-          <div className="label mb-md">
-            <h3>{movie.name}</h3>
-            <div className="sub-label flex align-center items-center mt-sm">
-              <div className="flex align-center items-center">
-                <h3 className="label">Made Year</h3>
-                <h4 className="ml-lg">{movie.year}</h4>
-              </div>
-              <div className="flex align-center items-center ml-lg">
-                <h3>IMDb</h3>
-                <h3 className="ml-lg">{movie.rating}</h3>
-              </div>
-            </div>
-          </div>
+      <main className="play flex align-center items-center justify-between">
+        <div className="left_side">
+          <AdsContent />
         </div>
-        <div
-          className="video-player"
-          dangerouslySetInnerHTML={createMarkup()}
-        ></div>
-        <Adsense
-          client="ca-pub-4591861188995436"
-          slot="6710577704"
-          style={{
-            display: 'inline-block',
-            height: 70,
-            marginTop: 10,
-            width: ' 100%',
-            background: 'white',
-          }}
-          layout="in-article"
-          format="fluid"
-        />
+        <div className="flex-1 pl-lg pr-lg">
+          <PlayerBody movie={movie} />
+        </div>
+        <div className="right_side">
+          <AdsContent />
+        </div>
       </main>
     </Layout>
   );

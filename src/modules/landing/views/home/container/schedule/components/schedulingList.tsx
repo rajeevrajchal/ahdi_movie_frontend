@@ -16,10 +16,8 @@ interface SchedulingListInterface {
 const SchedulingList: FC<SchedulingListInterface> = ({ scheduleList }) => {
   const { dispatch, state } = useContext(Context);
   const history = useHistory();
-  // const date = new Date();
-  // const clockTime = date.getTime();
-  // console.log(clockTime);
   const handleClick = async (value: $FIXME) => {
+    console.log(value);
     const canPlay = await axios.get(
       `${api_url}schedule/movie-time/${value.slot}`
     );
@@ -52,7 +50,7 @@ const SchedulingList: FC<SchedulingListInterface> = ({ scheduleList }) => {
           onClick={() => handleClick(sheduleitem)}
           key={key}
         >
-          <span> {moment(sheduleitem.slot).format('LLL')} </span>
+          <span> {moment(sheduleitem.slot).format('LT')} </span>
         </button>
       ))}
     </div>

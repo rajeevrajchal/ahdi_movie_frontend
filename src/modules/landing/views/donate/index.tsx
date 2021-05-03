@@ -6,7 +6,8 @@ import axios from 'axios';
 import { Context } from '../../../../context';
 import { ToasterStateInterface } from '../../../../components/shared/toaster/services/toasterReducer';
 import { setToasterState } from '../../../../components/shared/toaster/services/toasterAction';
-import { Adsense } from '@ctrl/react-adsense';
+import DonationBody from './container/donation_body';
+import AdsContent from '../../components/ads/ads_content';
 
 const Donate = () => {
   const [paid, setPaid] = React.useState(false);
@@ -87,74 +88,25 @@ const Donate = () => {
       keywords={['movie', 'shows']}
       title={'Donation'}
     >
-      <main className="donate flex column align-center items-center justify-center">
-        <Adsense
-          client="ca-pub-4591861188995436"
-          slot="6710577704"
-          style={{
-            display: 'inline-block',
-            height: 90,
-            width: '70%',
-            background: 'white',
-          }}
-          layout="in-article"
-          format="fluid"
-        />
-        <div className="heading text-center mt-md mb-md">
-          <div className="label">
-            <h1>Support the project</h1>
-          </div>
-          <div className="description mt-lg">
-            <p>
-              Thanks for deciding to support our project !. Thanks for being
-              with so long and enjoy you time.{' '}
-            </p>
-          </div>
-
-          <div className="mt-lg flex flex-centered">
-            {paid ? (
-              <div className="heading_text">Payment successful.!</div>
-            ) : (
-              <div className="w-60">
-                {screen === 'form' && (
-                  <>
-                    <div className="input-group mb-md">
-                      <div className="input-box">
-                        <input
-                          type="number"
-                          placeholder={'your amount'}
-                          value={amount}
-                          onChange={(e: $FIXME) => handleChange(e)}
-                        />
-                      </div>
-                      {amountError && <p>Amount is Required</p>}
-                    </div>
-                    <div
-                      className="btn primary"
-                      onClick={(e) => handleSubmit(e)}
-                    >
-                      Proceed
-                    </div>
-                  </>
-                )}
-                {screen === 'confirm' && <div ref={paypalRef} />}
-              </div>
-            )}
-          </div>
-          {error && <p className="text-error">Payment Failed</p>}
+      <main className="donate flex align-center items-center justify-between">
+        <div className="left_ads">
+          <AdsContent />
         </div>
-        <Adsense
-          client="ca-pub-4591861188995436"
-          slot="6710577704"
-          style={{
-            display: 'inline-block',
-            height: 90,
-            width: '70%',
-            background: 'white',
-          }}
-          layout="in-article"
-          format="fluid"
-        />
+        <div className="flex-1">
+          <DonationBody
+            paid={paid}
+            screen={screen}
+            amount={amount}
+            amountError={amountError}
+            error={error}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            paypalRef={paypalRef}
+          />
+        </div>
+        <div className="right_ads">
+          <AdsContent />
+        </div>
       </main>
     </Layout>
   );
