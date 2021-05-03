@@ -102,8 +102,8 @@ const Home = () => {
               slot="6710577704"
               style={{
                 display: 'inline-block',
-                height: '100%',
-                width: '100%',
+                width: '250px',
+                height: '500px',
                 background: 'red',
               }}
               layout="in-article"

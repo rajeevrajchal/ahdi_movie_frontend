@@ -20,12 +20,11 @@ const AdsContent: FC<AdsContentInterface> = (props) => {
         client={client_id ?? 'ca-pub-4591861188995436'}
         slot={slot_id ?? '6710577704'}
         style={{
-          display: 'inline-block',
-          height: '100%',
-          width: '100%',
+          display: 'block',
+          width: '250px',
+          height: '650px',
           background: 'red',
         }}
-        layout="in-article"
         format="fluid"
       />
     </div>
